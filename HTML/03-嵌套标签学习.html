@@ -42,15 +42,130 @@
   <!-- 表格 -->
   <!-- table 嵌套 tr， tr 嵌套 td/th -->
   <!-- table: 表格  tr: 行  th: 表头单元格  td: 内容单元格 -->
+  <!-- 表格默认没有边框线， 使用 border 属性可以为表格添加边框线 -->
   <strong>表格：</strong>
-   <table border="1">
-    <tr>
-      <th>姓名</th>
-      <th>语文</th>
-      <th>数学</th>
-      <th>总分</th>
-    </tr>
-   </table>
-   <hr>
+  <table border="1">
+    <thead>
+      <tr>
+        <th>姓名</th>
+        <th>语文</th>
+        <th>数学</th>
+        <th>总分</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>张三</td>
+        <td>99</td>
+        <td>100</td>
+        <td>199</td>
+      </tr>
+      <tr>
+        <td>李四</td>
+        <td>98</td>
+        <td>100</td>
+        <td>198</td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <td>总结</td>
+        <td>语文成绩</td>
+        <td>数学成绩</td>
+        <td>总分成绩</td>
+      </tr>
+    </tfoot>
+  </table>
+  <hr>
+
+  <!-- rowspan 跨行合并单元格 colspan 垮列合并单元格 -->
+  <strong>跨行/跨列合并单元格:</strong>
+  <table border="1">
+    <thead>
+      <tr>
+        <th>姓名</th>
+        <th>语文</th>
+        <th>数学</th>
+        <th>总分</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>张三</td>
+        <td>99</td>
+        <td rowspan="2">100</td>
+        <td>199</td>
+      </tr>
+      <tr>
+        <td>李四</td>
+        <td>98</td>
+        <td>198</td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <td>总结</td>
+        <td colspan="3">成绩分数</td>
+      </tr>
+    </tfoot>
+  </table>
+  <hr>
+
+  <!-- form 表单 -->
+  <form action="">
+    <strong>input 标签：</strong>
+    <br><br>
+    <input type="text" placeholder="单行输入的文本框">
+    <br><br>
+    <input type="password" placeholder="密码框">
+    <br><br>
+    单选框： 
+    <!-- name 为单选框定义同类 checked 默认选中 -->
+    <input type="radio" name="gender" checked> 男
+    <input type="radio" name="gender"> 女
+    <br><br>
+    <input type="checkbox" checked>多选框1（默认选中）<br>
+    <input type="checkbox">多选框2
+    <br><br>
+    上传单个文件：
+    <input type="file">
+    上传多个文件：
+    <input type="file" multiple>
+    <hr>
+
+    <!-- 下拉菜单 -->
+    <strong>下拉菜单：</strong>
+    <br><br>
+    城市：
+    <select>
+      <option selected>重庆(默认)</option>
+      <option>四川</option>
+      <option>北京</option>
+      <option>上海</option>
+    </select>
+    <hr>
+
+    <!-- 文本域 -->
+    <strong>文本域：</strong>
+    <br><br>
+    <textarea placeholder="请输入文字："></textarea>
+    <hr>
+
+    <!-- label 标签 -->
+    <!-- 用该标签绑定文字和表单空间的关系，增大表单空间的点击范围 -->
+    <strong>label 标签：</strong>
+    <p>该标签绑定文字和表单空间的关系，增大表单空间的点击范围</p>
+    <input type="radio" name="gender" id="man" checked><label for="man">男(点这儿→·←试试)</label>
+    <label><input type="radio" name="gender" id="">女(点这儿→·←试试)</label>
+    <hr>
+
+    <!-- 按钮 button -->
+    <strong>button 按钮：</strong>
+    <br><br>
+    <button type="submit">提交</button> submit: 提交数据到后台（默认功能<br>
+    <button type="reset">重置</button> reset: 重置表单区域内的控件回复默认值<br>
+    <button type="button">普通按钮</button> button: 普通按钮，靠js实现功能<br>
+    <hr>
+  </form>
 </body>
 </html>
