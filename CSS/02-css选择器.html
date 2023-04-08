@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>css选择器</title>
+  <style>
+    /* 标签选择器 */
+    p {
+      color: red;
+    }
+
+    div {
+      color: red;
+    }
+    /* 类选择器 */
+    /* 一个类选择器，可以给多个标签使用 */
+    .blue {
+      color: blue;
+    }
+
+    .size {
+      font-size: 50px;
+    }
+
+    /* id 选择器 */
+    /* id 选择器一般配合 JS 使用，很少用来设置 CSS 样式 */
+    /* 同一个 id 只能在同一个页面只能使用一次 */
+    #yellow {
+      color: yellow;
+    }
+
+    /* 通配符选择器 */
+    /* 查找页面所有标签，设置相同样式 */
+    /* 一般在项目初期，清除所有标签的 “默认样式” */
+    * {
+      color: pink;
+    }
+  </style>
+</head>
+<body>
+  <p>这是第一个 p 标签</p>
+  <p class="blue">这是第二个 p 标签</p>
+
+  <div>这是第一个 div 标签</div>
+  <!-- 一个标签可以使用多个类名，类名用空格隔开 -->
+  <div class="blue size" id="yellow">这是第二个 div 标签</div>
+
+  <ul>
+    <li>1111</li>
+    <li>2222</li>
+    <li>3333</li>
+  </ul>
+
+  <strong>4444</strong>
+</body>
+</html>

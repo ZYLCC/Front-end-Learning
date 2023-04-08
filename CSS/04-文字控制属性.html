@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>文字控制属性</title>
+	<style>
+		* {
+			/* font-family 字体 */
+			/* 属性值可以书写多个，用逗号隔开，执行顺序是从左向右依次查找 */
+			/* 网页开发建议使用 “无衬线字体” sans-serif */
+			font-family: 楷体;
+		}
+
+		.test {
+			font-size: 30px;
+			/* font-weight 400是默认  700是加粗*/
+			font-weight: 700;
+			/* font-style  italic是倾斜   一般用来清除文字的倾斜效果*/
+			font-style: italic;
+			/* 
+			color 属性值：
+			颜色英文单词
+			rgb表示法：rgb(r, g, b) 取值 0 ~ 255
+			rgba表示法：ragb(r, g, b, a)  a 表示透明度 取值 0 ~ 1
+			十六进制表示法：#RRGGBB   eg：#00000 #ffcc00 简写 #000 #fc0
+			*/
+		}
+
+		.line-height {
+			/* 如果行高值为 int 型，那就是当前文字的 int * font-size */
+			line-height: 2;
+		}
+
+		.center {
+			height: 100px;
+			background-color: skyblue;
+
+			/* 靠行高来实现垂直居中只适用于 “单行” 文字 */
+			line-height: 100px;
+			/* 居中的是文字内容，并不是标签 */
+			text-align: center;
+		}
+
+		.default {
+			font-size: 16px;
+			font-weight: 400;
+			font-style: normal;
+		}
+
+		.font {
+			/* font: 是否倾斜 是否加粗 字号/行高 字体 （必须按排序书写） */
+			/* font: italic 700 30px/2 楷体; */
+
+			/* 字号和字体 必须书写，否则 font 属性不生效 */
+			font: 30px 楷体;
+		}
+
+		.text-indent {
+			/* 缩进 */
+			/* 属性值：
+			数字 + px
+			数字 + em (推荐： 1em = 当前标签的字号大小)
+			*/
+
+			text-indent: 2em;
+		}
+
+		.img-center {
+			background-color: skyblue;
+			text-align: center;
+		}
+
+		.none {
+			text-decoration: none;
+		}
+		.underline {
+			text-decoration: underline;
+		}
+		.line-through {
+			text-decoration: line-through;
+		}
+		.overline {
+			text-decoration: overline;
+		}
+	</style>
+</head>
+<body>
+	<p>这是默认字体</p>
+	<hr>
+
+	<h2 class="default">这是加了默认样式的 h2 标题</h2>
+	<em class="default">这是 em 标签（本应该是倾斜的）</em>
+	<hr>
+
+	<p class="test">测试字体</p>
+	<hr>
+
+	<strong>默认 p 标签：</strong>
+	<p>噫吁嚱，危乎高哉！蜀道之难，难于上青天！蚕丛及鱼凫，开国何茫然！尔来四万八千岁，不与秦塞通人烟。西当太白有鸟道，可以横绝峨眉巅。地崩山摧壮士死，然后天梯石栈相钩连。上有六龙回日之高标，下有冲波逆折之回川。黄鹤之飞尚不得过，猿猱欲度愁攀援。青泥何盘盘，百步九折萦岩峦。扪参历井仰胁息，以手抚膺坐长叹。问君西游何时还？畏途巉岩不可攀。但见悲鸟号古木，雄飞雌从绕林间。又闻子规啼夜月，愁空山。蜀道之难，难于上青天，使人听此凋朱颜！连峰去天不盈尺，枯松倒挂倚绝壁。飞湍瀑流争喧豗，砯崖转石万壑雷。其险也如此，嗟尔远道之人胡为乎来哉！剑阁峥嵘而崔嵬，一夫当关，万夫莫开。所守或匪亲，化为狼与豺。朝避猛虎，夕避长蛇；磨牙吮血，杀人如麻。锦城虽云乐，不如早还家。蜀道之难，难于上青天，侧身西望长咨嗟！</p>
+	<hr>
+
+	<strong>加了行高的段落：</strong>
+	<p class="line-height">噫吁嚱，危乎高哉！蜀道之难，难于上青天！蚕丛及鱼凫，开国何茫然！尔来四万八千岁，不与秦塞通人烟。西当太白有鸟道，可以横绝峨眉巅。地崩山摧壮士死，然后天梯石栈相钩连。上有六龙回日之高标，下有冲波逆折之回川。黄鹤之飞尚不得过，猿猱欲度愁攀援。青泥何盘盘，百步九折萦岩峦。扪参历井仰胁息，以手抚膺坐长叹。问君西游何时还？畏途巉岩不可攀。但见悲鸟号古木，雄飞雌从绕林间。又闻子规啼夜月，愁空山。蜀道之难，难于上青天，使人听此凋朱颜！连峰去天不盈尺，枯松倒挂倚绝壁。飞湍瀑流争喧豗，砯崖转石万壑雷。其险也如此，嗟尔远道之人胡为乎来哉！剑阁峥嵘而崔嵬，一夫当关，万夫莫开。所守或匪亲，化为狼与豺。朝避猛虎，夕避长蛇；磨牙吮血，杀人如麻。锦城虽云乐，不如早还家。蜀道之难，难于上青天，侧身西望长咨嗟！</p>
+	<hr>
+
+	<strong>加了缩进的段落：</strong>
+	<p class="text-indent">噫吁嚱，危乎高哉！蜀道之难，难于上青天！蚕丛及鱼凫，开国何茫然！尔来四万八千岁，不与秦塞通人烟。西当太白有鸟道，可以横绝峨眉巅。地崩山摧壮士死，然后天梯石栈相钩连。上有六龙回日之高标，下有冲波逆折之回川。黄鹤之飞尚不得过，猿猱欲度愁攀援。青泥何盘盘，百步九折萦岩峦。扪参历井仰胁息，以手抚膺坐长叹。问君西游何时还？畏途巉岩不可攀。但见悲鸟号古木，雄飞雌从绕林间。又闻子规啼夜月，愁空山。蜀道之难，难于上青天，使人听此凋朱颜！连峰去天不盈尺，枯松倒挂倚绝壁。飞湍瀑流争喧豗，砯崖转石万壑雷。其险也如此，嗟尔远道之人胡为乎来哉！剑阁峥嵘而崔嵬，一夫当关，万夫莫开。所守或匪亲，化为狼与豺。朝避猛虎，夕避长蛇；磨牙吮血，杀人如麻。锦城虽云乐，不如早还家。蜀道之难，难于上青天，侧身西望长咨嗟！</p>
+	<hr>
+
+	<div class="center">垂直水平居中测试</div>
+	<hr>
+
+	<div class="font">这里测试 font 复合属性</div>
+	<hr>
+	
+	<!-- 给图片居中，选择 div 标签，因为 text-align 是居中的内容 -->
+	<div class="img-center">
+		<strong>图片居中：</strong><br>
+		<img src="../HTML/img1.png" alt="png" height="200">
+	</div>
+	<hr>
+
+	<strong>测试 text-decoration 给文本加线：</strong><br>
+	<a class="none" href="#">a 标签，属性值 none：去掉下划线</a><br>
+	<p class="underline">p 标签，属性值 underline：添加下划线</p>
+	<div class="line-through">div 标签，属性值 line-through: 添加删除线</div><br>
+	<span class="overline">span 标签，属性值 overline：添加顶划线</span>
+	<hr>
+
+</body>
+</html>
