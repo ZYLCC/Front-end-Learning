@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS特性</title>
+  <style>
+    /* 继承性：子级默认继承父级的文字控制属性 */
+    body {
+      font-size: 30px;
+      color: red;
+      font-weight: 700;
+    }
+
+    /* 
+    层叠性：
+    相同的属性会覆盖：后面的 CSS 属性覆盖前面的 CSS 属性
+    不同的属性会叠加：不同的 CSS 属性都生效
+    */
+  </style>
+</head>
+<body>
+  <div>这是 div 标签</div>
+  <p>这是 p 标签</p>
+  <span>这是 span 标签</span>
+  <div>
+    <p>这是 div 标签包裹下的子级 p 标签</p>
+  </div>
+  <a href="#">这是 a 标签（自己标签有的样式就不会继承父级的样式）</a>
+</body>
+</html>
