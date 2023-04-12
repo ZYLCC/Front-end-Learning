@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>结构伪类选择器</title>
+  <style>
+    /* 结构伪类选择器
+    E:first-child 查找第一个E元素
+    E:last-child  查找最后一个E元素
+    E:nth-child(n)  查找第n个E元素 
+    */
+    ul li:first-child {
+      background-color: red;
+    }
+
+    ul li:last-child {
+      background-color: blue;
+    }
+
+    ul li:nth-child(5) {
+      background-color: orange;
+    }
+
+    /* E:nth-child(n)  ()内可以写公式
+    偶数标签             2n
+    奇数标签             2n+1、2n-1
+    i的倍数的标签         in
+    i个以后的标签(含5)    n+i
+    i个以前的标签(含5)    -n+i
+    */
+    ol li:nth-child(3n) {
+      background-color: pink;
+    }
+  </style>
+</head>
+<body>
+  <ul>
+    <li>li 标签1</li>
+    <li>li 标签2</li>
+    <li>li 标签3</li>
+    <li>li 标签4</li>
+    <li>li 标签5</li>
+    <li>li 标签6</li>
+    <li>li 标签7</li>
+    <li>li 标签8</li>
+  </ul>
+
+  <ol>
+    <li>li 标签</li>
+    <li>li 标签</li>
+    <li>li 标签</li>
+    <li>li 标签</li>
+    <li>li 标签</li>
+    <li>li 标签</li>
+    <li>li 标签</li>
+    <li>li 标签</li>
+  </ol>
+</body>
+</html>
