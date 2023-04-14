@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>盒子模型</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+
+      /* 内减模式，自动减去 border 和 padding 的尺寸 */
+      /* box-sizing: border-box; */
+    }
+
+    hr {
+      margin: 5px 0;
+    }
+
+    div.bd {
+      width: 200px;
+      height: 200px;
+      /* display: inline-block; */
+      background-color: pink;
+
+      /* border
+      solid  实线
+      dashed 虚线
+      dotted 点线
+      */
+      border: 3px dotted #000;
+      border-left: 3px solid #000;
+      border-top: 3px dashed #000;
+      border-radius: 20%;
+    }
+
+    div.pd-plus {
+      width: 200px;
+      height: 200px;
+      background-color: orange;
+
+      /* padding 内边距 
+      四个属性值 padding: top right bottom left;
+      三个属性值 padding: top left&right bottom;
+      两个属性值 padding: top&bottom left&right
+      */
+      padding-top: 20px;
+      padding-right: 50px;
+      padding-bottom: 40px;
+      padding-left: 30px;
+    } 
+
+    div.box{
+      width: 200px;
+      height: 200px;
+      background-color: orange;
+
+      border: 5px solid #000;
+      padding: 20px;
+
+      /* 内减模式，自动减去 border 和 padding 的尺寸 */
+      box-sizing: border-box;
+    }
+
+    div.mg {
+      width: 1000px;
+      height: 200px;
+      background-color: skyblue;
+      /* display: inline-block; */
+      /* display: inline; */
+
+      /* margin: 30px; */
+      /* 只有块级元素才能这样设置居中,且必须有 width 属性 */
+      margin: 0 auto;
+    }
+
+    div.overflow {
+      width: 200px;
+      height: 200px;
+      background-color: sienna;
+
+      /* overflow 
+      hidden   溢出隐藏
+      scoll    不论是否溢出都显示滚动条
+      auto     溢出滚动
+      */
+      /* overflow: hidden; */
+      /* overflow: scroll; */
+      overflow: auto;
+    }
+  </style>
+</head>
+<body>
+  <!-- 盒子尺寸 = 内容尺寸 + border尺寸 + 内边距尺寸 -->
+  <div class="bd">div 标签 边框线</div><hr>
+  <div class="pd-plus"><img width="200px" height="200px" src="./images/bg-cat.png" alt=""></div><hr>
+  <div class="box">div 标签 不被边框和内边距撑大</div><hr>
+  <div class="mg">div 标签 外边距</div><hr>
+  <div class="overflow">文字内容测试溢出显示方式文字内容测试溢出显示方式文字内容测试溢出显示方式文字内容测试溢出显示方式文字内容测试溢出显示方式文字内容测试溢出显示方式文字内容测试溢出显示方式文字内容测试溢出显示方式文字内容测试溢出显示方式文字内容测试溢出显示方式文字内容测试溢出显示方式文字内容测试溢出显示方式文字内容测试溢出显示方式文字内容测试溢出显示方式文字内容测试溢出显示方式文字内容测试溢出显示方式文字内容测试溢出显示方式文字内容测试溢出显示方式文字内容测试溢出显示方式文字内容测试溢出显示方式文字内容测试溢出显示方式文字内容测试溢出显示方式文字内容测试溢出显示方式文字内容测试溢出显示方式文字内容测试溢出显示方式文字内容测试溢出显示方式</div><hr>
+</body>
+</html>
