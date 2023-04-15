@@ -19,6 +19,7 @@
     }
 
     div.bd {
+      margin: 0 auto;
       width: 200px;
       height: 200px;
       /* display: inline-block; */
@@ -32,10 +33,20 @@
       border: 3px dotted #000;
       border-left: 3px solid #000;
       border-top: 3px dashed #000;
-      border-radius: 20%;
+
+      /* border-radius    最大值是  50%
+      四个属性值：左上  右上  右下  左下  （顺时针）
+      三个属性值：左上  右上+左下 右下    （顺时针，缺的找对角）
+      两个属性值：左上+右下   右上+左下   （顺时针，缺的找对角）
+      */
+      /* border-radius: 20%; */
+      /* border-radius: 20px 40px 60px 80px; */
+      /* border-radius: 20px 40px 80px; */
+      border-radius: 20px 80px;
     }
 
     div.pd-plus {
+      margin: 0 auto;
       width: 200px;
       height: 200px;
       background-color: orange;
@@ -51,7 +62,13 @@
       padding-left: 30px;
     } 
 
+    .pd-plus img {
+      background-color: pink;
+      border-radius: 50%;
+    }
+
     div.box{
+      margin: 0 auto;
       width: 200px;
       height: 200px;
       background-color: orange;
@@ -67,6 +84,7 @@
       width: 1000px;
       height: 200px;
       background-color: skyblue;
+      border-radius: 100px;
       /* display: inline-block; */
       /* display: inline; */
 
@@ -89,6 +107,83 @@
       /* overflow: scroll; */
       overflow: auto;
     }
+
+    .one, .two{
+      width: 100px;
+      height: 100px;
+      margin: 0 auto;
+    }
+
+    /* 垂直排列的盒子，外边距会合并（取大值） */
+    .one {
+      background-color: brown;
+      margin-bottom: 100px;
+    }
+
+    .two {
+      background-color: orange;
+      margin-top: 20px;
+    }
+
+    /* 父子级的标签，子级添加上外边距会产生塌陷问题（使得父级标签产生上外边距） */
+    .test1 .father {
+      width: 300px;
+      height: 300px;
+      background-color: pink;
+    }
+
+    .test1 .father>.son {
+      width: 100px;
+      height: 100px;
+      background-color: orange;
+      margin-top: 50px;
+    }
+
+    .test1 {
+      margin-right: 100px;
+    }
+
+    /* 解决办法：
+    1. 取消子级 margin，父级设置 padding (常用)
+    2. 父级设置 overflow: hidden
+    3. 父级设置 border-top
+     */
+    .test2 .father {
+      width: 300px;
+      height: 300px;
+      background-color: pink;
+      /* overflow: hidden; */
+      border-top: 1px solid;
+    }
+
+    .test2 .son {
+      width: 100px;
+      height: 100px;
+      background-color: orange;
+      margin-top: 50px;
+    }
+
+    /* 行内元素（内联元素）设置内外边距不改变垂直方向的位置，只改变水平位置 */
+    span {
+      background-color: red;
+      margin: 20px;
+      padding: 20px;
+
+      /* 解决办法：使用 line-height */
+      line-height: 100px;
+    }
+
+    /* box-shadow
+    属性值：x轴偏移量 y轴偏移量 模糊半径 扩散半径 颜色 内外阴影
+    */
+    .shadow {
+      margin: 50px auto;
+      width: 200px;
+      height: 100px;
+      background-color: orange;
+
+      box-shadow: 2px 5px 10px 1px #000;
+    }
   </style>
 </head>
 <body>
@@ -98,5 +193,26 @@
   <div class="box">div 标签 不被边框和内边距撑大</div><hr>
   <div class="mg">div 标签 外边距</div><hr>
   <div class="overflow">文字内容测试溢出显示方式文字内容测试溢出显示方式文字内容测试溢出显示方式文字内容测试溢出显示方式文字内容测试溢出显示方式文字内容测试溢出显示方式文字内容测试溢出显示方式文字内容测试溢出显示方式文字内容测试溢出显示方式文字内容测试溢出显示方式文字内容测试溢出显示方式文字内容测试溢出显示方式文字内容测试溢出显示方式文字内容测试溢出显示方式文字内容测试溢出显示方式文字内容测试溢出显示方式文字内容测试溢出显示方式文字内容测试溢出显示方式文字内容测试溢出显示方式文字内容测试溢出显示方式文字内容测试溢出显示方式文字内容测试溢出显示方式文字内容测试溢出显示方式文字内容测试溢出显示方式文字内容测试溢出显示方式文字内容测试溢出显示方式</div><hr>
+  <div class="one">div 标签1 <br> 底部外边距100px</div>
+  <div class="two">div 标签2 <br> 顶部外边距20px</div><hr>
+
+  <div class="test1">
+    <div class="father">
+      <div class="son">子级 div <br> 上外边距为50px</div>
+    </div>
+  </div><hr>
+
+  <div class="test2">
+    <div class="father">
+      <div class="son">子级 div <br> 上外边距为50px</div>
+    </div>
+  </div><hr>
+
+  <span>span 标签1</span>
+  <span>span 标签2</span><hr>
+
+  <div class="shadow">有阴影的 div 标签</div>
+
+
 </body>
 </html>
