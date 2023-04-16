@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>浮动-基本使用</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    li {
+      list-style: none;
+    }
+    /* 测试浮动 */
+    /* 浮动后的特点：
+    顶对齐；具备行内块显示模式特点
+    */
+    .box1 {
+      height: 200px;
+    }
+
+    .one {
+      width: 100px;
+      height: 100px;
+      background-color: brown;
+
+      float: left;
+    }
+
+    .two {
+      width: 200px;
+      height: 200px;
+      background-color: orange;
+
+      float: right;
+    }
+
+    .three {
+      width: 200px;
+      height: 200px;
+      background-color: pink;
+
+      float: right;
+    }
+
+    /* 浮动布局案例 */
+    .product {
+      margin: 50px auto;
+      margin-bottom: 10px;
+      width: 1226px;
+      height: 628px;
+      background-color: pink;
+    }
+
+    .left {
+      /* float 放在最前面 */
+      float: left;
+      width: 234px;
+      height: 628px;
+      background-color: skyblue;
+    }
+
+    .right {
+      float: right;
+      width: 978px;
+      height: 628px;
+      background-color: brown;
+    }
+
+    .right ul li {
+      float: left;
+      width: 234px;
+      height: 300px;
+      background-color: orange;
+      margin: 0 14px 14px 0;
+    }
+
+    .right ul li:nth-child(4n) {
+      /* 如果父级宽度不够，浮动的盒子会掉出 */
+      margin-right: 0;
+    }
+
+    /* 清除浮动 */
+    /* 浮动的父级没有设置高，子级无法撑开父级高度（可能导致页面布局错乱） */
+    /* 解决方法： 
+    1. 额外标签法：在父元素内容的最后添加一个块级元素，设置CSS属性 clear: both
+    */
+    .top {
+      margin: 10px auto;
+      width: 1200px;
+      /* height: 300px; */
+      background-color: pink;
+    }
+
+    .top .left {
+      float: left;
+      width: 200px;
+      height: 300px;
+      background-color: skyblue;
+    }
+
+    .top .right {
+      float: right;
+      width: 950px;
+      height: 300px;
+      background-color: orange;
+    }
+
+    /* 额外标签法 */
+    .clearfix {
+      clear: both;
+    }
+
+    .bottom {
+      height: 100px;
+      background-color: brown;
+    }
+  </style>
+</head>
+<body>
+  <!-- 测试浮动 -->
+  <div class="box1">
+    <div class="one">div 标签1</div>
+    <div class="two">div 标签2</div>
+    <div class="three">div 标签3</div>
+  </div><hr>
+
+  <!-- 浮动布局案例 -->
+  <div class="product">
+    <div class="left"></div>
+    <div class="right">
+      <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ul>
+    </div>
+  </div><hr>
+
+  <!-- 清除浮动 -->
+  <div class="top">
+    <div class="left"></div>
+    <div class="right"></div>
+    <div class="clearfix"></div>
+  </div>
+  <div class="bottom"></div>
+</body>
+</html>
