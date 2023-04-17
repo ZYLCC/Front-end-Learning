@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>小米布局案例</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    /* 使用 float 布局 */
+    .box {
+      width: 1226px;
+      height: 615px;
+      margin: 50px auto;
+      margin-bottom: 10px;
+    }
+
+    .box .left {
+      float: left;
+      width: 234px;
+      height: 100%;
+      background-color: #800080;
+    }
+
+    .box .right {
+      float: right;
+      width: 978px;
+      height: 100%;
+    }
+
+    .box .right ul li {
+      float: left;
+      width: 234px;
+      height: 300px;
+      margin-right: 14px;
+      margin-bottom: 14px;
+      list-style: none;
+      background-color: #87ceeb;
+    }
+
+    .box .right ul li:nth-child(4n) {
+      margin-right: 0;
+    }
+
+    .box .right ul li:nth-child(n+5) {
+      margin-bottom: 0;
+    }
+
+    /* 使用 flex 布局 */
+    .box1 {
+      display: flex;
+      width: 1226px;
+      height: 615px;
+      margin: 50px auto;
+      margin-bottom: 10px;
+    }
+
+    .box1 .left {
+      width: 234px;
+      height: 100%;
+      background-color: #800080;
+      margin-right: 14px;
+    }
+
+    .box1 .right {
+      width: 978px;
+      height: 615px;
+    }
+
+    .box1 .right ul {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-content: space-between;
+      width: 978px;
+      height: 615px;
+    }
+
+    .box1 .right ul li {
+      display: block;
+      width: 234px;
+      height: 300px;
+      list-style: none;
+      background-color: #87ceeb;
+    }
+  </style>
+</head>
+<body>
+  <!-- 使用 float 布局 -->
+  <h3>使用 float 布局:</h3>
+  <div class="box">
+    <div class="left"></div>
+    <div class="right">
+      <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ul>
+    </div>
+  </div><hr>
+
+  <!-- 使用 flex 布局 -->
+  <h3>使用 flex 布局:</h3>
+  <div class="box1">
+    <div class="left"></div>
+    <div class="right">
+      <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ul>
+    </div>
+  </div><hr>
+</body>
+</html>

@@ -17,20 +17,81 @@
     }
 
     .box {
+      /* display: flex; */
       width: 1200px;
       height: 420px;
       margin: 50px auto;
       padding: 90px 40px 90px 60px;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+    }
+
+    .box ul {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      /* 设置侧轴的对齐方式记得先设置 height */
+      align-content: space-between;
+      
+      height: 238px;
+      /* align-items: center; */
+    }
+
+    .box ul li {
+      display: flex;
+      width: 500px;
+      height: 88px;
+    }
+
+    .box ul li img {
+      display: block;
+      margin-right: 15px;
+    }
+
+    .box .text h4 {
+      font-size: 20px;
+      color: #333;
+      line-height: 40px;
+      font-weight: 400;
+    }
+
+    .box .text p {
+      color: #666;
+      font-size: 14px;
     }
   </style>
 </head>
 <body>
   <div class="box">
     <ul>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
+      <li>
+        <img src="./images/rocket.svg" alt="">
+        <div class="text">
+          <h4>一键发布多端</h4>
+          <p>发布视频到抖音短视频、西瓜视频及今日头条</p>
+        </div>
+      </li>
+      <li>
+        <img src="./images/shield.svg" alt="">
+        <div class="text">
+          <h4>管理视频内容</h4>
+          <p>支持修改已发布稿件状态和实时查询视频审核状态</p>
+        </div>
+      </li>
+      <li>
+        <img src="./images/paper-airplane.svg" alt="">
+        <div class="text">
+          <h4>发布携带组件</h4>
+          <p>支持分享内容携带小程序、地理位置信息等组件，扩展内容及突出地域性</p>
+        </div>
+      </li>
+      <li>
+        <img src="./images/bar-line-chart.svg" alt="">
+        <div class="text">
+          <h4>数据评估分析</h4>
+          <p>获取视频在对应产品内的数据表现、获取抖音热点，及时进行表现评估</p>
+        </div>
+      </li>
     </ul>
   </div>
 </body>
