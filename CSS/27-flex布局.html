@@ -37,6 +37,8 @@
     .box2 {
       display: flex;
 
+      margin: 0 auto;
+      width: 800px;
       height: 300px;
       border: 1px solid #000;
     }
@@ -139,10 +141,20 @@
     /* **********************flex-wrap 换行*********************** */
     .box6 {
       display: flex;
+      /* 换行 */
       flex-wrap: wrap;
       justify-content: space-between;
 
-      height: 300px;
+      /* 调整 行对齐方式 对单行的弹性盒子不生效 */
+      align-content: flex-start;
+      align-content: flex-end;
+      align-content: center;
+      align-content: space-between;
+      align-content: space-around;
+      /* 没有代码补全提示，但能生效 */
+      align-content: space-evenly;
+
+      height: 400px;
       border: 1px solid #000;
     }
 
@@ -156,13 +168,15 @@
 </head>
 <body>
   <h3>Flex布局也叫弹性布局，是浏览器提倡的布局模型，非常适合结构化布局，提供了强大的空间分布和对齐能力。
-    Flex模型不会产生浮动布局中脱标现象，布局网页更简单、更灵活。</h3>
+    Flex模型不会产生浮动布局中脱标现象，布局网页更简单、更灵活。</h3><hr>
+  <h4>flex 初尝试</h4>
   <div class="box">
     <div>div1</div>
     <div>div2</div>
     <div>div3</div>
   </div><hr>
   <!-- ********************************************* -->
+  <h4>弹性盒子默认水平排列（挤压自身适应父级），侧轴铺满父级（自身未设置宽高的话）</h4>
   <div class="box2">
     <div>div1</div>
     <div>div2</div>
@@ -201,8 +215,6 @@
     <div>div6</div>
     <div>div7</div>
     <div>div8</div>
-    <div>div9</div>
-    <div>div10</div>
   </div><hr>
 </body>
 </html>
