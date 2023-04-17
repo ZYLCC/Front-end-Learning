@@ -1,0 +1,33 @@
+/* 清除浮动 */
+/* 浮动的父级没有设置高，子级无法撑开父级高度（可能导致页面布局错乱） */
+/* 解决方法： 
+1. 额外标签法：在父元素内容的最后添加一个块级元素，设置CSS属性 clear: both
+2. 单伪元素法：给父元素最后添加一个伪元素，设置为 block
+3. 双伪元素法（推荐）：给父元素前后各添加一个伪元素，设置为 table 
+*/
+
+
+/* 额外标签法 */
+.clearfix {
+    clear: both;
+}
+
+/* 单伪元素法 */
+.clearfix::after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+/* 双伪元素法 */
+/* before 解决外边距塌陷问题 */
+.clearfix::before,
+.clearfix::after {
+    content: "";
+    display: table;
+}
+
+.clearfix::after {
+    /* after 清楚浮动 */
+    clear: both;
+}

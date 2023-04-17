@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>flex布局</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    /* Flex布局也叫弹性布局，是浏览器提倡的布局模型，非常适合结构化布局，提供了强大的空间分布和对齐能力。
+    Flex模型不会产生浮动布局中脱标现象，布局网页更简单、更灵活。 */
+    
+    /* 给父元素设置了 display: flex; 子元素可以自动挤压或拉伸 */
+    .box {
+      display: flex;
+      justify-content: space-between;
+
+      /* height: 300px; */
+      margin: 0 auto;
+      width: 800px;
+      border: 1px solid #000;
+    }
+
+    .box div {
+      /* float: left; */
+      /* margin: 50px; */
+      width: 200px;
+      height: 100px;
+      background-color: pink;
+      border-left: 1px solid #000;
+    }
+
+    /* ********************************************* */
+    /* 弹性容器 */
+    .box2 {
+      display: flex;
+
+      height: 300px;
+      border: 1px solid #000;
+    }
+
+    /* 弹性盒子：沿着主轴（默认水平）方向排列 */
+    .box2 div {
+      width: 200px;
+      /* height: 100px; */
+      background-color: pink;
+      border-left: 1px solid #000;
+    }
+
+    /* **********************justify-contend 各个属性值*********************** */
+    .box3 {
+      display: flex;
+      /* justify-content: flex-start; 默认值，写与不写都一样 */
+      /* justify-content: flex-end; 末尾*/
+      /* justify-content: center; 居中*/
+      /* justify-content: space-between; 父级剩余尺寸自动分配间距，弹性盒子间距相等 */
+      /* justify-content: space-around; 间距出现在弹性盒子两侧，弹性盒子间距是两端间距的两倍 */
+      /* justify-content: space-evenly; 各个间距都相等 */
+      justify-content: space-between;
+
+      height: 300px;
+      border: 1px solid #000;
+    }
+
+    .box3 div {
+      width: 200px;
+      height: 100px;
+      background-color: pink;
+      border: 1px solid #000;
+    }
+
+    /* **********************侧轴*********************** */
+    .box4 {
+      display: flex;
+
+      /* 修改主轴方向为垂直方向，则侧轴自动变为水平方向 */
+      flex-direction: column;
+
+      /* stretch 弹性盒子沿着侧轴线被拉伸至铺满容器，弹性盒子没有高度才能拉伸 */
+      /* align-items: stretch; （弹性盒子没有设置侧轴方向尺寸则默认拉伸) */
+
+      /* align-items: center; 居中*/
+      
+      /* align-items: flex-end; 侧轴末尾*/
+
+      /* align-items: flex-start; 侧轴起始 */
+      align-items: center;
+
+      height: 300px;
+      border: 1px solid #000;
+    }
+
+    .box4 div:nth-child(2) {
+      align-self: flex-end;
+    }
+
+    .box4 div:nth-child(3) {
+      align-self: flex-start;
+    }
+
+    .box4 div {
+      width: 200px;
+      height: 100px;
+      background-color: pink;
+      border: 1px solid #000;
+    }
+
+    /* **********************弹性伸缩比*********************** */
+    /* 默认情况下，主轴方向尺寸是靠内容撑开；侧轴默认拉伸 */
+    .box5 {
+      display: flex;
+      /* flex-direction: column; */
+
+      height: 300px;
+      border: 1px solid #000;
+    }
+
+    .box5 div {
+      height: 100px;
+      background-color: pink;
+      border: 1px solid #000;
+    }
+
+    .box5 div:nth-child(1) {
+      /* width: 200px; */
+    }
+
+    /* 按主轴剩余尺寸的份数（按比例） */
+    .box5 div:nth-child(2) {
+      flex: 1;
+    }
+
+    .box5 div:nth-child(3) {
+      flex: 2;
+    }
+
+    /* **********************flex-wrap 换行*********************** */
+    .box6 {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+
+      height: 300px;
+      border: 1px solid #000;
+    }
+
+    .box6 div {
+      width: 200px;
+      height: 100px;
+      background-color: pink;
+      border: 1px solid #000;
+    }
+  </style>
+</head>
+<body>
+  <h3>Flex布局也叫弹性布局，是浏览器提倡的布局模型，非常适合结构化布局，提供了强大的空间分布和对齐能力。
+    Flex模型不会产生浮动布局中脱标现象，布局网页更简单、更灵活。</h3>
+  <div class="box">
+    <div>div1</div>
+    <div>div2</div>
+    <div>div3</div>
+  </div><hr>
+  <!-- ********************************************* -->
+  <div class="box2">
+    <div>div1</div>
+    <div>div2</div>
+    <div>div3</div>
+    <div>div4</div>
+    <div>div5</div>
+    <div>div6</div>
+    <div>div7</div>
+    <div>div8</div>
+  </div><hr>
+  <!-- ********************************************* -->
+  <div class="box3">
+    <div>div1</div>
+    <div>div2</div>
+    <div>div3</div>
+  </div><hr>
+  <!-- ********************************************* -->
+  <div class="box4">
+    <div>div1</div>
+    <div>div2</div>
+    <div>div3</div>
+  </div><hr>
+  <!-- ********************************************* -->
+  <div class="box5">
+    <div>div1</div>
+    <div>div2</div>
+    <div>div3</div>
+  </div><hr>
+  <!-- ********************************************* -->
+  <div class="box6">
+    <div>div1</div>
+    <div>div2</div>
+    <div>div3</div>
+    <div>div4</div>
+    <div>div5</div>
+    <div>div6</div>
+    <div>div7</div>
+    <div>div8</div>
+    <div>div9</div>
+    <div>div10</div>
+  </div><hr>
+</body>
+</html>
