@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>定位</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    hr {
+      margin: 10px 0;
+    }
+
+    /* 相对定位：
+    1. 改变位置的参照物是 标签原来的位置
+    2. 不脱标，占位（占原来的位置）
+    3. 标签显示模式 不变
+    */
+    img.test {
+      display: block;
+      position: relative;
+      top: 50px;
+      left: 100px;
+    }
+
+
+    /* 绝对定位
+    使用场景：子级 绝对定位，父级 相对定位（子绝父相）
+    */
+    .bigbox {
+      position: relative;
+
+      width: 400px;
+      height: 400px;
+      margin: 50px auto;
+      padding-top: 20px;
+      background-color: pink;
+    }
+
+    .box {
+      /* position: relative; */
+
+      margin: 0 auto;
+      width: 200px;
+    }
+
+    /* 绝对定位特点：
+    1. 脱标，不占位
+    2. 参照物：先找最近的已经相对定位的祖先元素，如果所有祖先元素都没有定位，参照浏览器可视区定位
+    3. 显示模式特点改变：宽高生效（具备了行内块的特点）
+    */
+
+    .box span {
+      position: absolute;
+      top: 0;
+      right: 0;
+
+      display: block;
+      width: 92px;
+      height: 32px;
+      background-color: rgba(0,0,0,0.6);
+      text-align: center;
+      line-height: 32px;
+      color: #fff;
+    }
+
+    /* 定位居中 
+    1. 绝对定位
+    2. 水平、垂直边偏移为 50%
+    3. 子级向左、上移动自身尺寸的一半 （用外边距来实现，属性值为负数）
+    4. transform: translate(-50%, -50%)
+    */
+    .largebox {
+      display: flex;
+      flex-wrap: wrap;
+      position: relative;
+
+      height: 1000px;
+      background-color: skyblue;
+    }
+
+    .largebox .son {
+      width: 50%;
+      height: 50%;
+      border: 1px solid #000;
+    }
+
+    .largebox .pic1 {
+      width: 400px;
+      height: 200px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      /* margin-top: -100px;
+      margin-left: -200px; */
+      /* transform: translate(-50%, -50%) */
+      transform: translate(-200px, -100px)
+    }
+
+    /* 固定定位 */
+    /* 
+    1. 脱标，不占位
+    2. 参照物：浏览器窗口
+    3. 显示模式改变，具备行内块特点
+    */
+    .pic2 {
+      position: fixed;
+      top: 0;
+      right: 0;
+    }
+
+  </style>
+</head>
+<body>
+  <!-- 相对定位 -->
+  <p>Vue是一套用于构建用户界面的渐进式框架。Vue采用自底向上增量开发的设计，提供了MVVM数据绑定和可组合的组件系统，具有简单、灵活的API，通过简单的API可实现响应式的数据绑定和可组合的视图组件。</p>
+  <img class="test" src="./images/bg-cat.png" alt="">
+  <p>Vue是一套用于构建用户界面的渐进式框架。Vue采用自底向上增量开发的设计，提供了MVVM数据绑定和可组合的组件系统，具有简单、灵活的API，通过简单的API可实现响应式的数据绑定和可组合的视图组件。</p>
+  <p>Vue是一套用于构建用户界面的渐进式框架。Vue采用自底向上增量开发的设计，提供了MVVM数据绑定和可组合的组件系统，具有简单、灵活的API，通过简单的API可实现响应式的数据绑定和可组合的视图组件。</p><hr>
+
+  <!-- 绝对定位（子绝父相） -->
+  <div class="bigbox">
+    <div class="box">
+      <img src="./images/bg-cat.png" alt="">
+      <span>四个大字</span>
+      <h4>测试文字测试文字</h4>
+    </div>
+  </div><hr>
+
+  <!-- 定位居中 -->
+  <div class="largebox">
+    <img class="pic1" src="./images/login.webp" alt="">
+    <div class="son"></div>
+    <div class="son"></div>
+    <div class="son"></div>
+    <div class="son"></div>
+  </div><hr>
+
+  <!-- 固定定位 -->
+  <div class="largebox">
+    <h2>平衡车图片是我这块天蓝色区域的子级，但固定定位让他参照了浏览器窗口位置</h2>
+    <div class="pic2">
+      <img src="./images/car.jpg" alt="">
+    </div>
+  </div>
+</body>
+</html>
