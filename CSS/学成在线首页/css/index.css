@@ -6,6 +6,18 @@
   width: 1200px;
 }
 
+/* 查看全部统一样式 */
+a.more {
+  display: block;
+  padding-right: 20px;
+  background-image: url(../images/more.png);
+  background-repeat: no-repeat;
+  background-position: right center;
+  color: #999;
+  font-size: 14px;
+  line-height: 60px;
+}
+
 body {
   background-color: #f3f5f7;
 }
@@ -270,17 +282,6 @@ body {
   line-height: 60px;
 }
 
-.course .hd a {
-  display: block;
-  padding-right: 20px;
-  background-image: url(../images/more.png);
-  background-repeat: no-repeat;
-  background-position: right center;
-  color: #999;
-  font-size: 14px;
-  line-height: 60px;
-}
-
 .course .bd ul {
   display: flex;
   flex-wrap: wrap;
@@ -295,10 +296,6 @@ body {
 
 .course .bd ul a img {
   display: block;
-}
-
-.course .bd ul a {
-  height: 156px;
 }
 
 .course .bd ul .text {
@@ -330,3 +327,227 @@ body {
   font-style: normal;
 }
 
+/* 前端区域 */
+.frontend .hd {
+  display: flex;
+  justify-content: space-between;
+  height: 60px;
+}
+
+.frontend .hd h3 {
+  color: #333;
+  font-size: 21px;
+  font-weight: 400;
+  line-height: 60px;
+}
+
+.frontend .hd ul {
+  display: flex;
+  align-items: center;
+}
+
+.frontend .hd ul li {
+  margin-right: 60px;
+  font-size: 16px;
+  color: #333;
+}
+
+.hd ul li a.active,
+.hd ul li a:hover {
+  color: #00a4ff;
+}
+
+.frontend .bd {
+  display: flex;
+  justify-content: space-between;
+  height: 400px;
+}
+
+.frontend .top {
+  height: 100px;
+  margin-bottom: 15px;
+}
+
+.frontend .bottom ul {
+  display: flex;
+  justify-content: space-between;
+
+}
+
+.frontend .bottom ul li {
+  margin-bottom: 14px;
+  width: 228px;
+  height: 271px;
+}
+
+.frontend .bottom .pic {
+  height: 156px;
+}
+
+.frontend .bd ul .text {
+  padding: 20px;
+  height: 115px;
+  background-color: #fff;
+  line-height: 20px;
+}
+
+.frontend .bd ul .text h4 {
+  margin-bottom: 13px;
+  height: 40px;
+  font-size: 14px;
+  color: #333;
+  font-weight: 400;
+}
+
+.frontend .bd .text p {
+  height: 20px;
+  font-size: 14px;
+  color: #999;
+}
+
+.frontend .bd .text p span {
+  color: #fa6400;
+}
+
+.frontend .bd .text p i {
+  font-style: normal;
+}
+
+/* python区域 */
+.python .hd {
+  display: flex;
+  justify-content: space-between;
+  height: 60px;
+}
+
+.python .hd h3 {
+  color: #333;
+  font-size: 21px;
+  font-weight: 400;
+  line-height: 60px;
+}
+
+.python .hd ul {
+  display: flex;
+  align-items: center;
+}
+
+.python .hd ul li {
+  margin-right: 60px;
+  font-size: 16px;
+  color: #333;
+}
+
+.python .bd {
+  display: flex;
+  justify-content: space-between;
+  height: 400px;
+}
+
+.python .top {
+  height: 100px;
+  margin-bottom: 15px;
+}
+
+.python .bottom ul {
+  display: flex;
+  justify-content: space-between;
+
+}
+
+.python .bottom ul li {
+  margin-bottom: 14px;
+  width: 228px;
+  height: 271px;
+}
+
+.python .bottom .pic {
+  height: 156px;
+}
+
+.python .bd ul .text {
+  padding: 20px;
+  height: 115px;
+  background-color: #fff;
+  line-height: 20px;
+}
+
+.python .bd ul .text h4 {
+  margin-bottom: 13px;
+  height: 40px;
+  font-size: 14px;
+  color: #333;
+  font-weight: 400;
+}
+
+.python .bd .text p {
+  height: 20px;
+  font-size: 14px;
+  color: #999;
+}
+
+.python .bd .text p span {
+  color: #fa6400;
+}
+
+.python .bd .text p i {
+  font-style: normal;
+}
+
+/* 版权区域 */
+.footer {
+  height: 273px;
+  margin-top: 60px;
+  background-color: #fff;
+}
+
+.footer .wrapper {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 60px;  
+}
+
+.footer .left {
+  width: 440px;
+  height: 155px;
+}
+
+.footer .left p {
+  margin: 24px 0 14px;
+  color: #666;
+  font-size: 12px;
+  line-height: 17px;
+}
+
+.footer .download {
+  display: block;
+  width: 120px;
+  height: 36px;
+  border: 1px solid #00a4ff;
+  color: #00a4ff;
+  font-size: 16px;
+  line-height: 34px;
+  text-align: center;
+}
+
+.footer .right {
+  display: flex;
+
+}
+
+.footer .right dl {
+  margin-left: 130px;
+}
+
+.footer .right dl dt {
+  margin-bottom: 12px;
+  color: #333;
+  font-size: 16px;
+  line-height: 23px;
+}
+
+.footer .right dl a {
+  color: #666;
+  font-size: 14px;
+  line-height: 24px;
+}
