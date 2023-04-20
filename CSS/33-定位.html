@@ -114,16 +114,43 @@
       right: 0;
     }
 
+    /* 堆叠顺序 z-index */
+    /* 默认是后来居上（后写的标签在最上面） */
+    /* z-index: 取值为整数，默认是 0，取值越大， 显示顺序越靠上*/
+    .index {
+      position: relative;
+      
+    }
+
+    .index div {
+      position: absolute;
+      width: 200px;
+      height: 200px;
+    }
+
+    .index .box1 {
+      background-color: pink;
+      z-index: 1;
+    }
+
+    .index .box2 {
+      top: 100px;
+      left: 100px;
+      padding-top: 150px;
+      background-color: skyblue;
+    }
   </style>
 </head>
 <body>
   <!-- 相对定位 -->
+  <h3>相对定位:</h3>
   <p>Vue是一套用于构建用户界面的渐进式框架。Vue采用自底向上增量开发的设计，提供了MVVM数据绑定和可组合的组件系统，具有简单、灵活的API，通过简单的API可实现响应式的数据绑定和可组合的视图组件。</p>
   <img class="test" src="./images/bg-cat.png" alt="">
   <p>Vue是一套用于构建用户界面的渐进式框架。Vue采用自底向上增量开发的设计，提供了MVVM数据绑定和可组合的组件系统，具有简单、灵活的API，通过简单的API可实现响应式的数据绑定和可组合的视图组件。</p>
   <p>Vue是一套用于构建用户界面的渐进式框架。Vue采用自底向上增量开发的设计，提供了MVVM数据绑定和可组合的组件系统，具有简单、灵活的API，通过简单的API可实现响应式的数据绑定和可组合的视图组件。</p><hr>
 
   <!-- 绝对定位（子绝父相） -->
+  <h3>绝对定位:</h3>
   <div class="bigbox">
     <div class="box">
       <img src="./images/bg-cat.png" alt="">
@@ -133,6 +160,7 @@
   </div><hr>
 
   <!-- 定位居中 -->
+  <h3>定位居中:</h3>
   <div class="largebox">
     <img class="pic1" src="./images/login.webp" alt="">
     <div class="son"></div>
@@ -142,11 +170,19 @@
   </div><hr>
 
   <!-- 固定定位 -->
+  <h3>固定定位:</h3>
   <div class="largebox">
     <h2>平衡车图片是我这块天蓝色区域的子级，但固定定位让他参照了浏览器窗口位置</h2>
     <div class="pic2">
       <img src="./images/car.jpg" alt="">
     </div>
+  </div><hr>
+
+  <!-- 堆叠顺序 -->
+  <h3>堆叠顺序:</h3>
+  <div class="index">
+    <div class="box1">我是先写的div标签</div>
+    <div class="box2">我是后写的div标签</div>
   </div>
 </body>
 </html>

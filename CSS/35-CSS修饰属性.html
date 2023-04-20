@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>css修饰属性</title>
+  <style>
+    /* 垂直对齐方式 vertical-align */
+    div {
+      display: flex;
+      border: 1px solid #000;
+    }
+
+    img {
+      /* 垂直对齐方式 也会让 img 底下的空白消失 */
+      /* vertical-align: top; */
+      /* vertical-align: middle; */
+      /* vertical-align: bottom; */
+
+      /* 
+      因为浏览器把行内块、行内标签当做文字处理，默认按基线对齐
+      效果：img 的底下会有空白，转块级就不按基线对齐，空白就没了
+      */
+      display: block;
+    }
+
+    /* 过渡属性 transition 
+    作用：可以为一个元素在不同状态之间切换的时候添加过渡效果
+    属性名：transition（复合属性）
+    属性值：需要过渡的属性（eg. widht height） 话费时间（s）
+    · 过渡的属性可以是具体的 css 属性，也可以是 all （两个状态属性值不同的所有属性，都产生过渡效果）
+    · transition 设置给元素本身
+    */
+    .trans {
+      width: 100px;
+      height: 100px;
+      background-color: pink;
+      border: 1px solid #000;
+      transition: all 1s;
+    }
+
+    .trans:hover {
+      width: 150px;
+      height: 150px;
+      background-color: orange;
+      border: 3px solid #000;
+    }
+
+    /* 透明度 opacity */
+    .opacity {
+      width: 500px;
+      height: 500px;
+      background-color: black;
+    }
+
+    .opacity img {
+      width: 200px;
+      height: 200px;
+      opacity: 1;
+      transition: opacity 1s;
+    }
+
+    .opacity img:hover {
+      opacity: 0.2;
+    }
+
+    /* 光标类型 cursor */
+    .cursor {
+      display: flex;
+      margin: 0 auto;
+      justify-content: space-between;
+      width: 400px;
+      height: 100px;
+    }
+
+    .cursor div {
+      width: 100px;
+      height: 100px;
+      background-color: skyblue;
+    }
+
+    .cursor .p {
+      cursor: pointer;
+    }
+
+    .cursor .t {
+      cursor: text;
+    }
+
+    .cursor .m {
+      cursor: move;
+    }
+  </style>
+</head>
+<body>
+  <!-- 垂直对齐方式 -->
+  <h3>测试垂直对齐方式 vertical-align：</h3>
+  <div>
+    <img src="./images/bg-cat.png" alt="">
+    测试文字测试文字
+  </div><hr>
+
+  <!-- 过渡属性 -->
+  <h3>测试过渡属性 transition：</h3>
+  <div class="trans"></div><hr>
+
+  <!-- 透明度 -->
+  <div class="opacity"><img src="./images/bg-cat.png" alt=""></div><hr>
+
+  <!-- 光标类型 -->
+  <div class="cursor">
+    <div class="p">小手，可以点击</div>
+    <div class="t">工字型，可以选择文字</div>
+    <div class="m">十字光标，可以移动</div>
+  </div>
+</body>
+</html>

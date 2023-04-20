@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>css精灵</title>
+  <style>
+    /* 
+    1．创建盒子，盒子尺寸与小图尺寸相同
+    2．设置盒子背景图为精灵图
+    3．添加background-position属性，改变背景图位置
+      3.1使用PxCOok 测量小图片左上角坐标
+      3.2取负数坐标为 background-position 属性值（向左上移动图片位置)
+    */
+    .test {
+      width: 112px;
+      height: 110px;
+      background-image: url(./images/abcd.jpg);
+      background-position: -256px -276px;
+    }
+
+    /* 京东服务实践 */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    .box {
+      width: 1190px;
+      height: 42px;
+      margin: 20px auto;
+      /* background-color: pink; */
+    }
+    
+    .box ul {
+      display: flex;
+      list-style: none;
+    }
+
+    .box li {
+      width: 297px;
+      height: 42px;
+    }
+
+    .box li .unit {
+      display: flex;
+      position: relative;
+      width: 297px;
+      height: 42px;
+      margin: 0 36px;
+      padding-left: 45px;
+    }
+
+    .box .unit h5 {
+      position: absolute;
+      left: 0;
+      width: 36px;
+      height: 42px;
+      background-image: url(./images/sprite.png);
+      font-size: 0;
+    }
+
+    .unit .duo {
+      background-position: 0 -192px;
+    }
+
+    .unit .kuai {
+      background-position: -41px -192px;
+    }
+
+    .unit .hao {
+      background-position: -123px -192px;
+    }
+
+    .unit .sheng {
+      background-position: -123px -192px;
+    }
+
+    .unit p {
+      height: 42px;
+      color: #444;
+      font-size: 18px;
+      font-weight: 700;
+      line-height: 42px;
+    }
+  </style>
+</head>
+<body>
+  <h3>这是整个背景大图(精灵图):</h4>
+  <img src="./images/abcd.jpg" alt=""><hr>
+  <h3>这是通过bgp定位得到的其中一个字母:</h3>
+  <div class="test"></div><hr>
+  <!-- 京东服务实践 -->
+  <div class="box">
+    <ul>
+      <li>
+        <div class="unit">
+          <h5 class="duo">多</h5>
+          <p>品类齐全，轻松购物</p>
+        </div>
+      </li>
+      <li>
+        <div class="unit">
+          <h5 class="kuai">块</h5>
+          <p>多仓直发，极速配送</p>
+        </div>
+      </li>
+      <li>
+        <div class="unit">
+          <h5 class="hao">好</h5>
+          <p>正品行货，精致服务</p>
+        </div>
+      </li>
+      <li>
+        <div class="unit">
+          <h5 class="sheng">省</h5>
+          <p>天天低价，畅选无忧</p>
+        </div>
+      </li>
+    </ul>
+  </div><hr>
+</body>
+</html>
