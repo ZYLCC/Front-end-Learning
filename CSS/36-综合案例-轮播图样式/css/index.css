@@ -8,8 +8,8 @@
 }
 
 .pics {
+  position: absolute;
   display: flex;
-
 }
 
 .pics img {
@@ -17,7 +17,8 @@
   height: 315px;
 }
 
-.banner > a {
+.banner .left,
+.banner .right {
   display: none;
   position: absolute;
   top: 50%;
@@ -31,10 +32,6 @@
   line-height: 30px;
 }
 
-.banner > a:hover {
-  display: inline-block;
-}
-
 .banner .left {
   border-radius: 0 15px 15px 0;
 }
@@ -45,6 +42,37 @@
   text-align: center;
 }
 
+.banner:hover .left,
+.banner:hover .right {
+  display: block;
+}
+
 .right span {
   right: 0;
+}
+
+.dots {
+  display: flex;
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 42px;
+  height: 14px;
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 7px;
+}
+
+.dots a {
+  display: block;
+  width: 8px;
+  height: 8px;
+  margin: 3px;
+  background-color: #fff;
+  border-radius: 50%;
+}
+
+.dots .active,
+.dots a:active {
+  background-color: #ff5000;
 }
