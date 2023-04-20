@@ -1,0 +1,50 @@
+.banner {
+  position: relative;
+  width: 564px;
+  height: 315px;
+  margin: 100px auto;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.pics {
+  display: flex;
+
+}
+
+.pics img {
+  width: 564px;
+  height: 315px;
+}
+
+.banner > a {
+  display: none;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+
+  width: 20px;
+  height: 30px;
+  background-color: rgba(0,0,0,0.3);
+  color: #fff;
+  font-size: 16px;
+  line-height: 30px;
+}
+
+.banner > a:hover {
+  display: inline-block;
+}
+
+.banner .left {
+  border-radius: 0 15px 15px 0;
+}
+
+.banner .right {
+  right: 0;
+  border-radius: 15px 0 0 15px;
+  text-align: center;
+}
+
+.right span {
+  right: 0;
+}
