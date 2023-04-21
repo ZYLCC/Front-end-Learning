@@ -1,0 +1,196 @@
+/* 顶部快捷导航区域 */
+.shortcut {
+  height: 52px;
+  background-color: #333;
+
+}
+
+.shortcut .wrapper {
+  height: 52px;
+}
+
+.shortcut ul {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.shortcut ul li {
+  height: 52px;
+  line-height: 52px;
+}
+
+.shortcut ul li a {
+  padding: 0 15px;
+  border-right: 1px solid #999;
+  color: #fff;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.shortcut ul li:first-child a {
+  color: #5EB69C;
+}
+
+.shortcut ul li:last-child a {
+  border: none;
+}
+
+.icon-mobile-phone {
+  margin-right: 4px;
+}
+
+/* 头部导航栏区域 */
+.header.wrapper {
+  display: flex;
+  height: 88px;
+  margin: 22px auto;
+}
+
+.header .logo {
+  width: 200px;
+  height: 88px;
+  margin-right: 40px;
+}
+
+.header .logo a {
+  display: block;
+  width: 200px;
+  height: 88px;
+  background-image: url(../images/logo.png);
+  font-size: 0;
+}
+
+.header .nav {
+  margin-top: 33px;
+  margin-right: 28px;
+}
+
+.header .nav ul {
+  display: flex;
+}
+
+.header .nav ul li {
+  margin-right: 47px;
+}
+
+.header .nav a {
+  padding-bottom: 10px;
+}
+
+.header .nav a:hover {
+  color: #5EB69C;
+  border-bottom: 2px solid #5EB69C;
+}
+
+/* 搜索框 */
+.header .search {
+  display: flex;
+  margin-top: 30px;
+  margin-right: 45px;
+  width: 170px;
+  height: 34px;
+  border-bottom: 2px solid #F4F4F4;
+}
+
+.search span {
+  margin-right: 8px;
+  font-size: 18px;
+  line-height: 32px;
+  color: #ccc;
+}
+
+.search input {
+  flex: 1;
+  /* 浏览器优先生效 input 标签的默认宽度，所以 flex：1 不生效 
+  解决办法：重置 input 默认宽度，width：0
+  */
+  width: 0;
+}
+
+.search input::placeholder {
+  font-size: 16px;
+  color: #ccc;
+}
+
+/* 购物车 */
+.header .cart {
+  position: relative;
+  margin-top: 32px;
+}
+
+.icon-cart-full {
+  font-size: 24px;
+}
+
+.cart i {
+  position: absolute;
+  right: -10px;
+  width: 20px;
+  height: 15px;
+  background-color: #E26237;
+  border-radius: 7.5px;
+  color: #fff;
+  font-size: 14px;
+  text-align: center;
+  line-height: 15px;
+}
+
+/* banner 区域 */
+.banner {
+  height: 500px;
+  background-color: #F5F5F5;
+}
+
+.banner .wrapper {
+  position: relative;
+  height: 500px;
+  overflow: hidden;
+}
+
+.banner .pics {
+  display: flex;
+  width: 3720px;
+}
+
+.banner .leftnav {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 250px;
+  height: 500px;
+  background-color: rgba(0,0,0,0.4);
+}
+
+.banner .leftnav li {
+  display: flex;
+  justify-content: space-between;
+  height: 50px;
+  padding: 0 12px 0 29px;
+  font-size: 14px;
+  line-height: 50px;
+  cursor: pointer;
+}
+
+.banner .leftnav li div {
+  display: flex;
+}
+
+.banner .leftnav li a {
+  display: block;
+  margin-right: 5px;
+  color: #fff;
+}
+
+.banner .leftnav li .classify {
+  margin-right: 14px;
+  font-size: 16px;
+}
+
+.banner .leftnav li span {
+  font-size: 14px;
+  color: #fff;
+}
+
+.banner .leftnav li:hover {
+  background-color: #00BE9A;
+}

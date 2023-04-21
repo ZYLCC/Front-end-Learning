@@ -1,0 +1,5 @@
+/* 头尾各个页面相同的样式 */
+.wrapper {
+  margin: 0 auto;
+  width: 1240px;
+}
