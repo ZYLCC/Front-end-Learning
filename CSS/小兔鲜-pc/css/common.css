@@ -3,3 +3,225 @@
   margin: 0 auto;
   width: 1240px;
 }
+
+/* 顶部快捷导航区域 */
+.shortcut {
+  height: 52px;
+  background-color: #333;
+
+}
+
+.shortcut .wrapper {
+  height: 52px;
+}
+
+.shortcut ul {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.shortcut ul li {
+  height: 52px;
+  line-height: 52px;
+}
+
+.shortcut ul li a {
+  padding: 0 15px;
+  border-right: 1px solid #999;
+  color: #fff;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.shortcut ul li:first-child a {
+  color: #5EB69C;
+}
+
+.shortcut ul li:last-child a {
+  border: none;
+}
+
+.icon-mobile-phone {
+  margin-right: 4px;
+}
+
+
+/* 头部导航栏区域 */
+.header.wrapper {
+  display: flex;
+  height: 88px;
+  margin: 22px auto;
+}
+
+.header .logo {
+  width: 200px;
+  height: 88px;
+  margin-right: 40px;
+}
+
+.header .logo a {
+  display: block;
+  width: 200px;
+  height: 88px;
+  background-image: url(../images/logo.png);
+  font-size: 0;
+}
+
+.header .nav {
+  margin-top: 33px;
+  margin-right: 28px;
+}
+
+.header .nav ul {
+  display: flex;
+}
+
+.header .nav ul li {
+  margin-right: 47px;
+}
+
+.header .nav a {
+  padding-bottom: 10px;
+}
+
+.header .nav a:hover {
+  color: #5EB69C;
+  border-bottom: 2px solid #5EB69C;
+}
+
+/* 底部区域 */
+.footer {
+  height: 580px;
+  background-color: #f5f5f5;
+}
+
+.service {
+  padding: 60px 94px;
+  border-bottom: 1px solid #e8e8e8;
+}
+
+.service ul {
+  display: flex;
+  justify-content: space-between;
+}
+
+.service ul div {
+  width: 58px;
+  height: 58px;
+  margin-right: 20px;
+}
+
+.service ul li:nth-child(1) div {
+  background-image: url(../images/sprite.png);
+  background-position: 0 0;
+}
+
+.service ul li:nth-child(2) div {
+  background-image: url(../images/sprite.png);
+  background-position: 0 58px;
+}
+
+.service ul li:nth-child(3) div {
+  background-image: url(../images/sprite.png);
+  background-position: 0 116px;
+}
+
+.service ul li:nth-child(4) div {
+  background-image: url(../images/sprite.png);
+  background-position: 0 174px;
+}
+
+.service ul li {
+  display: flex;
+}
+
+.service ul h5 {
+  font-size: 28px;
+  line-height: 58px;
+}
+
+/* 帮助中心区域 */
+.help {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 60px;
+}
+
+.help .left {
+  display: flex;
+  justify-content: space-between;
+}
+
+.help .left dl {
+  margin-right: 84px;
+}
+
+.help .left dl:last-child {
+  margin-right: 0;
+}
+
+.help .left dt {
+  margin-bottom: 30px;
+  font-size: 18px;
+}
+
+.help .left dd {
+  margin-bottom: 10px;
+  color: #969696;
+  cursor: pointer;
+}
+
+.help .left dd span {
+  color: #5EB69C;
+}
+
+.help .right ul {
+  display: flex;
+  justify-content: space-between;
+}
+
+.help .right ul li:first-child {
+  margin-right: 55px;
+}
+
+.help .right .pic {
+  margin-bottom: 10px;
+}
+
+.help .right p {
+  color: #969696;
+  text-align: center;
+}
+
+/* copyright 区域 */
+.copyright {
+  margin-top: 90px;
+}
+
+.copyright * {
+  color: #A1A1A1;
+}
+
+.copyright ul {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.copyright ul li {
+  height: 18px;
+  border-right: 2px solid #A1A1A1;
+  line-height: 18px;
+}
+
+.copyright ul li:last-child {
+  border: 0;
+}
+
+.copyright ul a {
+  margin: 0 12px;
+}
+
+.copyright p {
+  text-align: center;
+}

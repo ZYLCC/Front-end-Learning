@@ -1,87 +1,3 @@
-/* 顶部快捷导航区域 */
-.shortcut {
-  height: 52px;
-  background-color: #333;
-
-}
-
-.shortcut .wrapper {
-  height: 52px;
-}
-
-.shortcut ul {
-  display: flex;
-  justify-content: flex-end;
-}
-
-.shortcut ul li {
-  height: 52px;
-  line-height: 52px;
-}
-
-.shortcut ul li a {
-  padding: 0 15px;
-  border-right: 1px solid #999;
-  color: #fff;
-  font-size: 14px;
-  line-height: 20px;
-}
-
-.shortcut ul li:first-child a {
-  color: #5EB69C;
-}
-
-.shortcut ul li:last-child a {
-  border: none;
-}
-
-.icon-mobile-phone {
-  margin-right: 4px;
-}
-
-/* 头部导航栏区域 */
-.header.wrapper {
-  display: flex;
-  height: 88px;
-  margin: 22px auto;
-}
-
-.header .logo {
-  width: 200px;
-  height: 88px;
-  margin-right: 40px;
-}
-
-.header .logo a {
-  display: block;
-  width: 200px;
-  height: 88px;
-  background-image: url(../images/logo.png);
-  font-size: 0;
-}
-
-.header .nav {
-  margin-top: 33px;
-  margin-right: 28px;
-}
-
-.header .nav ul {
-  display: flex;
-}
-
-.header .nav ul li {
-  margin-right: 47px;
-}
-
-.header .nav a {
-  padding-bottom: 10px;
-}
-
-.header .nav a:hover {
-  color: #5EB69C;
-  border-bottom: 2px solid #5EB69C;
-}
-
 /* 搜索框 */
 .header .search {
   display: flex;
@@ -524,7 +440,9 @@
   width: 405px;
   height: 90px;
   padding: 20px 15px 14px;
-  background-image: linear-gradient(180deg, rgba(137,137,137,0.00) 0%, rgba(0,0,0,0.90) 100%);
+  background-image: linear-gradient
+  (180deg, rgba(137,137,137,0.00) 0%, 
+  rgba(0,0,0,0.90) 100%);
   color: #fff;
 }
 
@@ -565,3 +483,4 @@
 .new .bd .txt .left p:nth-child(1) span {
   color: #AA2113;
 }
+
