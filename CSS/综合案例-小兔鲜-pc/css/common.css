@@ -96,13 +96,13 @@
 }
 
 .service {
-  padding: 60px 94px;
+  padding: 60px 0;
   border-bottom: 1px solid #e8e8e8;
 }
 
 .service ul {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
 }
 
 .service ul div {
@@ -144,6 +144,7 @@
 .help {
   display: flex;
   justify-content: space-between;
+  height: 300px;
   padding-top: 60px;
 }
 
@@ -194,10 +195,6 @@
 }
 
 /* copyright 区域 */
-.copyright {
-  margin-top: 90px;
-}
-
 .copyright * {
   color: #A1A1A1;
 }
