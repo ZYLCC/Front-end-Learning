@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>平面转换</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    .test {
+      margin: 50px auto;
+      width: 100px;
+      height: 100px;
+      background-color: pink;
+      transition: all 1s;
+    }
+
+    .test:hover {
+      transform: translate(200px) rotate(360deg) scale(2) skew(360deg);
+    }
+
+    /* 分别测试平面转换 */
+    .father {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 624px;
+      height: 400px;
+      margin: 50px auto;
+      border: 2px solid #000;
+    }
+
+    .father div {
+      width: 150px;
+      height: 75px;
+      background-color: pink;
+      border: 1px solid #000;
+      line-height: 75px;
+      text-align: center;
+      transition: all 1s;
+    }
+
+    .father .rotate {
+      background-color: skyblue;
+    }
+
+    .father .scale {
+      background-color: orange;
+    }
+
+    .father .skew {
+      background-color: brown;
+    }
+
+    .translate:hover {
+      /* translate(x, y) 只写一个数代表水平方向*/
+      /* 可以取百分数，代表自身的百分比 */
+
+      /* transform: translate(200px, 100px); */
+      transform: translateY(100px);
+    }
+
+  </style>
+</head>
+<body>
+  <h3>整体体验平面转换：</h3>
+  <div class="test"></div><hr>
+
+  <h3>分别测试平面转换：</h3>
+  <div class="father">
+    <div class="translate">移入测试translate</div>
+    <div class="rotate">移入测试rotate</div>
+    <div class="scale">移入测试scale</div>
+    <div class="skew">移入测试skew</div>
+  </div>
+    
+</body>
+</html>
