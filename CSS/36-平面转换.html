@@ -8,6 +8,7 @@
   <style>
     * {
       box-sizing: border-box;
+      list-style: none;
     }
 
     .test {
@@ -22,11 +23,12 @@
       transform: translate(200px) rotate(360deg) scale(2) skew(360deg);
     }
 
-    /* 分别测试平面转换 */
+    /*************** 分别测试平面转换 ***************/
     .father {
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+      align-items: center;
       width: 624px;
       height: 400px;
       margin: 50px auto;
@@ -45,6 +47,8 @@
 
     .father .rotate {
       background-color: skyblue;
+      /* 更改旋转原点 */
+      transform-origin: right bottom;
     }
 
     .father .scale {
@@ -55,16 +59,129 @@
       background-color: brown;
     }
 
+    /* translate(x, y) 只写一个数代表水平方向*/
+    /* 可以取百分数，代表自身的百分比 */
     .translate:hover {
-      /* translate(x, y) 只写一个数代表水平方向*/
-      /* 可以取百分数，代表自身的百分比 */
-
       transform: translate(200px, 100px);
       /* transform: translateY(100px); */
     }
 
-    
+    /* rotate(--deg) 整数顺时针，负数逆时针 */
+    .rotate:hover {
+      transform: rotate(360deg);
+    }
 
+    /* scale(x, y)
+      双值：代表水平、垂直
+      单值：水平垂直等比例缩放
+      大于 1 放大，小于 1 缩小
+    */
+    .scale:hover {
+      transform: scale(2, 0.5);
+    }
+
+    .skew:hover {
+      transform: skew(80deg);
+      transform: skew(-80deg);
+    }
+
+    /*************** 双开门案例 ***************/
+    .bg_car {
+      display: flex;
+      margin: 10px auto;
+      width: 1366px;
+      height: 600px;
+      background-image: url(./images/bg_car.jpg);
+      overflow: hidden;
+
+    }
+
+    .bg_car .left_car,
+    .bg_car .right_car {
+      width: 683px;
+      height: 600px;
+      background-image: url(./images/two_car.jpg);
+      transition: all 0.5s;
+    }
+
+    .bg_car .right_car {
+      background-position: right 0;
+    }
+
+    .bg_car:hover .left_car {
+      transform: translate(-100%);
+    }
+
+    .bg_car:hover .right_car {
+      transform: translate(100%);
+    }
+
+    /*************** 多重转换效果，轮胎滚动 ***************/
+    .box {
+      width: 800px;
+      height: 200px;
+      margin: 10px auto;
+      border: 1px solid #000;
+    }
+
+    .box img {
+      width: 200px;
+      transition: all 3s;
+    }
+
+    .box:hover img {
+      /* 先平移后滚动 */
+      transform: translate(300%) rotate(360deg);
+      /* 旋转会改变坐标轴向 */
+      /* 多重转换：以第一种转换形态的坐标轴为准 */
+      /* 多重转换不能拆开写 */
+      /* transform: rotate(360deg) translate(300%); */
+    }
+
+    /*************** 播放按钮缩放特效 ***************/
+    .videobox {
+      width: 249px;
+      height: 210px;
+      margin: 10px auto;
+    }
+
+    .videobox li {
+      overflow: hidden;
+    }
+
+    .videobox img {
+      width: 100%;
+    }
+
+    .videobox p {
+      color: #333;
+      padding: 10px 10px 0 10px;
+    }
+
+    .videobox .pic {
+      position: relative;
+    }
+
+    .videobox .pic::after {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      margin-top: -29px;
+      margin-left: -29px;
+      content: '';
+      width: 58px;
+      height: 58px;
+      background-image: url(./images/play_button.png);
+      transform: scale(4.5);
+      opacity: 0;
+      transition: all 0.5s;
+    }
+
+    .videobox li:hover .pic::after{
+      transform: scale(1);
+      opacity: 1;
+      cursor: pointer;
+    }
   </style>
 </head>
 <body>
@@ -77,7 +194,30 @@
     <div class="rotate">测试rotate</div>
     <div class="scale">测试scale</div>
     <div class="skew">测试skew</div>
-  </div>
-    
+  </div><hr>
+
+  <!-- 双开门案例 -->
+  <h3>双开门案例：</h3>
+  <div class="bg_car">
+    <div class="left_car"></div>
+    <div class="right_car"></div>
+  </div><hr>
+
+  <!-- 多重转换效果，轮胎滚动 -->
+  <h3>多重转换效果，轮胎滚动:</h3>
+  <div class="box"><img src="./images/tyre.png" alt=""></div><hr>
+
+  <!-- 播放按钮缩放特效 -->
+  <h3>播放按钮缩放特效:</h3>
+  <div class="videobox">
+    <ul>
+      <li>
+        <div class="pic">
+          <img src="./images/party.jpeg" alt="">
+        </div>
+        <p>【和平精英】“初火”音乐概念片:四圣觉醒......</p>
+      </li>
+    </ul>
+  </div><hr>
 </body>
 </html>

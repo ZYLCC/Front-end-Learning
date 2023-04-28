@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>渐变</title>
+  <style>
+    /**************** 线性渐变 ****************/
+    /* background-image: linear-gradient(
+      渐变方向，
+      颜色1 终点位置（所占比例），
+      颜色2 终点位置（所占比例），
+      ......
+
+      取值：
+      渐变方向：可选项
+        to 方向
+        角度度数
+      重点位置：可选项
+        百分比
+    ) */
+    .test_linear-gradient {
+      width: 400px;
+      height: 400px;
+      margin: 10px auto;
+      border: 1px solid #000;
+      background-image: linear-gradient(
+        red, 
+        orange,
+        yellow,
+        green,
+        cyan,
+        blue,
+        purple
+      );
+
+      background-image: linear-gradient(
+        to right,
+        red, 
+        orange,
+        yellow,
+        green,
+        cyan,
+        blue,
+        purple
+      );
+
+      background-image: linear-gradient(
+        red 70%,
+        green
+      );
+
+      background-image: linear-gradient(
+        45deg,
+        red, 
+        orange,
+        yellow,
+        green,
+        cyan,
+        blue,
+        purple
+      );
+    }
+
+    /**************** 径向渐变 ****************/
+    /* background-image: radial-gradient
+         半径 at 圆心位置,
+         颜色1 终点位置,
+         颜色2 终点位置,
+         ......
+      取值：
+      半径可以是 2 条，则为椭圆
+      圆心位置：px / % / 方位名词
+     */
+    .test_radial-gradient {
+      width: 100px;
+      margin: 10px auto;
+    }
+
+    .test_radial-gradient div{
+      width: 100px;
+      height: 100px;
+      background-color: pink;
+      border-radius: 50%;
+      background-image: radial-gradient(
+        50px at center center,
+        red,
+        pink
+      );
+    }
+
+    .test_radial-gradient div:hover {
+      background-image: radial-gradient(
+        50px 20px at 50px 30px,
+        red,
+        pink
+      );
+    }
+
+    .test_radial-gradient button {
+      width: 100px;
+      height: 40px;
+      background-color: green;
+      border: 0;
+      border-radius: 5px;
+      color: #fff;
+      background-image: radial-gradient(
+        30px at 30px 20px,
+        rgba(255, 255, 255, 0.2),
+        transparent
+      );
+    }
+
+    /**************** 产品展示 ****************/
+    .product_box {
+      position: relative;
+      width: 300px;
+      height: 212px;
+      margin: 10px auto;
+    }
+
+    .product_box img {
+      width: 300px;
+    }
+
+    .product_box p {
+      position: absolute;
+      left: 15px;
+      bottom: 20px;
+      z-index: 2;
+      width: 260px;
+      color: #fff;
+      font-size: 20px;
+      font-weight: 700;
+    }
+
+    .product_box .mask {
+      position: absolute;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-image: linear-gradient(
+        transparent, /* 透明，相当于rgba(0,0,0,0) */
+        rgba(0,0,0,0.5)
+      );
+      opacity: 0;
+      transition: all 0.5s;
+    }
+
+    .product_box:hover .mask {
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+  <h3>线性渐变：</h3>
+  <div class="test_linear-gradient"></div><hr>
+
+  <!-- 产品展示 -->
+  <h3>产品展示（渐变特效）：</h3>
+  <div class="product_box">
+    <img src="./images/product.jpeg" alt="">
+    <p>OceanStor Pacific 海量存储斩获2021 InteropJ金奖</p>
+    <div class="mask"></div>
+  </div><hr>
+
+  <!-- 径向渐变 -->
+  <div class="test_radial-gradient">
+    <div></div>
+    <button>按钮</button>
+  </div><hr>
+</body>
+</html>
