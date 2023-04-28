@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>空间转换</title>
+  <style>
+    /************************* 空间平移 *************************/
+
+    /* 视距  perspective: 取值范围800-1200px
+       视距属性必须添加给 直接父级
+    */
+    .father {
+      perspective: 1000px;
+    }
+
+    .son {
+      width: 200px;
+      height: 200px;
+      margin: 50px auto;
+      background-color: pink;
+      transition: all 0.5s;
+    }
+
+    .son:hover {
+      transform: translateZ(300px);
+      transform: translateZ(-300px);
+    }
+
+    /************************* 空间旋转 *************************/
+    .rotate_box {
+      /* 透视效果：近大远小，近实远虚 */
+      perspective: 1000px;
+      width: 300px;
+      margin: 50px auto;
+    }
+
+    .rotate_box img {
+      width: 100%;
+      transition: all 0.5s;
+    }
+
+    .rotate_box .y:hover {
+      transform: rotateY(-60deg);
+    }
+
+    .rotate_box .x:hover {
+      transform: rotateX(60deg);
+    }
+
+    /************************* 立体呈现 *************************/
+    /* 步骤： 
+    1. 父元素添加 transform-style: preserve-3d;
+    2. 子级定位
+    3. 调整子盒子的位置（位移或旋转）
+    */
+    .cube {
+      perspective: 1000px;
+      position: relative;
+      width: 200px;
+      height: 200px;
+      margin: 100px auto;
+      transition: all 2s;
+
+      transform-style: preserve-3d;
+    }
+
+    .cube div {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 200px;
+      height: 200px;
+    }
+
+    .cube .front {
+      background-color: orange;
+      transform: translateZ(100px);
+    }
+
+    .cube .back {
+      background-color: green;
+      transform: translateZ(-100px);
+    }
+
+    .cube:hover {
+      transform: rotateY(89deg);
+    }
+
+    /************************* 案例-3D导航 *************************/
+    .nav {
+      display: flex;
+      width: 360px;
+      margin: 50px auto;
+    }
+
+    .nav li {
+      position: relative;
+      transform-style: preserve-3d;
+      width: 120px;
+      height: 50px;
+      list-style: none;
+      transition: all 0.5s;
+    }
+
+    .nav li div {
+      width: 100%;
+      height: 100%;
+      color: #fff;
+      font-size: 18px;
+      line-height: 50px;
+      font-weight: 500;
+      text-align: center;
+      cursor: pointer;
+    }
+
+    .nav .front {
+      background-color: green;
+      transform: translateZ(25px);
+    }
+
+    .nav .top {
+      position: absolute;
+      top: -25px;
+      transform: rotateX(90deg);
+      background-color: orange;
+    }
+
+    .nav li:hover {
+      /* 空间缩放 */
+      transform: rotateX(-90deg) scale3d(1.2, 1.2, 1.2);
+      z-index: 1;
+    }
+  </style>
+</head>
+<body>
+  <!-- 空间平移 -->
+  <h3>空间平移：</h3>
+  <div class="father">
+    <div class="son">div 标签</div>
+  </div><hr>
+
+  <!-- 空间旋转 -->
+  <h3>空间旋转(绕Y轴)：</h3>
+  <div class="rotate_box">
+    <img class="y" src="./images/party.jpeg" alt="">
+  </div><hr>
+  <h3>空间旋转(绕X轴)：</h3>
+  <div class="rotate_box">
+    <img class="x" src="./images/party.jpeg" alt="">
+  </div><hr>
+
+  <!-- 立体呈现 -->
+  <h3>立体呈现：</h3>
+  <div class="cube">
+    <div class="front">前面</div>
+    <div class="back">后面</div>
+  </div><hr>
+
+  <!-- 案例-3D导航 -->
+  <h3>案例-3D导航（带缩放）：</h3>
+  <ul class="nav">
+    <li>
+      <div class="front">首页</div>
+      <div class="top">index</div>
+    </li>
+    <li>
+      <div class="front">登录</div>
+      <div class="top">Login</div>
+    </li>
+    <li>
+      <div class="front">注册</div>
+      <div class="top">Register</div>
+    </li>
+  </ul>
+</body>
+</html>
