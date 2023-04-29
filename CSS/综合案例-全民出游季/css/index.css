@@ -1,0 +1,127 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+/* 默认情况下，html 和 body 标签高为0， 所以导致背景 cover 缩放不成功 */
+
+html {
+  height: 100%;
+}
+
+body {
+  height: 100%;
+  background: url(../images/f1_1.jpg) no-repeat center 0 / cover;
+  background-size: cover;
+}
+
+.cloud img {
+  position: absolute;
+  left: 50%;
+}
+
+.cloud img:nth-child(1) {
+  margin-left: -250px;
+  top: 20px;
+  animation: cloud_move 2s infinite linear alternate;
+}
+
+.cloud img:nth-child(2) {
+  margin-left: 400px;
+  top: 100px;
+  animation: cloud_move 2.5s infinite linear alternate;
+}
+
+.cloud img:nth-child(3) {
+  margin-left: -550px;
+  top: 200px;
+  animation: cloud_move 3s infinite linear alternate;
+}
+
+.balloon img {
+  position: absolute;
+  left: 50%;
+  margin-left: -390px;
+  top: 160px;
+  animation: balloon_move 1.5s infinite linear alternate;
+}
+
+.txt img {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  animation: txt_scale 1s;
+}
+
+.logo {
+  position: absolute;
+  left: 50%;
+  bottom: 40px;
+  transform: translate(-50%);
+  display: flex;
+  justify-content: space-between;
+  width: 730px;
+  margin: 0 auto;
+}
+
+.logo img {
+  width: 100px;
+}
+
+.logo img:nth-child(1) {
+  animation: logo_move 1s infinite alternate;
+}
+
+.logo img:nth-child(2) {
+  animation: logo_move 1s infinite alternate 0.25s;
+}
+
+.logo img:nth-child(3) {
+  animation: logo_move 1s infinite alternate 0.5s;
+}
+
+.logo img:nth-child(4) {
+  animation: logo_move 1s infinite alternate 0.75s;
+}
+
+/* 云 动画 */
+@keyframes cloud_move {
+  to {
+    transform: translate(40px);
+  }
+}
+
+/* 热气球 动画 */
+@keyframes balloon_move {
+  to {
+    transform: translateY(30px);
+  }
+}
+
+/* 文字 动画 */
+/* transform 是复合属性 需要重新申明一下translate */
+@keyframes txt_scale {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  20% {
+    transform: translate(-50%, -50%) scale(0);
+  }
+  40% {
+    transform: translate(-50%, -50%) scale(1.4);
+  }
+  70% {
+    transform: translate(-50%, -50%) scale(0.8);
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+/* logo 动画 */
+@keyframes logo_move {
+  to {
+    transform: translateY(-30px);
+  }
+}
