@@ -1,0 +1,28 @@
+/* less 导出:
+在less文件的第一样添加 // out: 存储文件url
+
+   less 禁止导出:
+在 less 文件的第一行添加 // out: false
+ */
+/*  less 导入:
+@import "其他 .less 文件的url";    
+可以不加后缀 .less  
+*/
+.father {
+  width: 120px;
+  width: 80px;
+  width: 200px;
+  width: 20rem;
+}
+.father .son {
+  color: pink;
+}
+.father .son:hover {
+  color: blue;
+}
+.box1 {
+  background-color: blue;
+}
+.box2 {
+  color: blue;
+}

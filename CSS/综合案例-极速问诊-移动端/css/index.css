@@ -1,0 +1,113 @@
+*,
+::after,
+::before {
+  box-sizing: border-box;
+}
+body,
+ul,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  padding: 0;
+  margin: 0;
+}
+body {
+  font-family: -apple-system, BlinkMacSystemFont, PingFangSC-Regular, "PingFang SC", "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  color: #333;
+}
+img {
+  vertical-align: bottom;
+}
+ul {
+  list-style-type: none;
+}
+a {
+  color: #333;
+  text-decoration: none;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+/* .rem (@name, @px) {
+  @{name}: unit(@px / 100, rem)
+}
+ */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 0.4rem;
+  height: 1.17333333rem;
+}
+header .back {
+  margin-right: 1.28rem;
+}
+header .back .iconfont {
+  font-size: 0.64rem;
+}
+header h3 {
+  font-size: 0.45333333rem;
+}
+header .note {
+  font-size: 0.4rem;
+  color: #2CB5A5;
+  font-weight: 700;
+}
+.banner {
+  width: 6.4rem;
+  margin: 0.8rem auto;
+}
+.banner .pic {
+  width: 100%;
+  margin-bottom: 0.48rem;
+}
+.banner .pic img {
+  width: 100%;
+}
+.banner p {
+  font-size: 0.42666667rem;
+  text-align: center;
+  font-weight: 700;
+}
+.banner p span {
+  color: #16C2A3;
+}
+.type {
+  padding: 0 0.4rem;
+}
+.type a {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 9.2rem;
+  height: 2.08rem;
+  padding: 0.37333333rem 0.4rem;
+  margin-bottom: 0.4rem;
+  border: 1px solid #ededede5;
+}
+.type a .left {
+  display: flex;
+}
+.type a .pic {
+  width: 1.06666667rem;
+  margin-right: 0.37333333rem;
+}
+.type a .pic img {
+  width: 100%;
+}
+.type a h4 {
+  font-size: 0.42666667rem;
+  color: #3C3E42;
+  margin-bottom: 0.16rem;
+  line-height: 0.42666667rem;
+}
+.type a p {
+  font-size: 0.34666667rem;
+  color: #848484;
+}
+.type a span {
+  color: #848484;
+}
