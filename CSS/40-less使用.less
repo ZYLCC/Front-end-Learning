@@ -12,6 +12,22 @@
 可以不加后缀 .less  
 */
 
+/* rem
+rem是css中的长度单位，1rem=根元素html的font-size值
+
+px 转 rem:
+  px单位尺寸 / 根元素html的font-size值（一般设置为浏览器宽度的1/10）
+*/
+
+/* vw / vh   （不建议混用，一般用 vw）
+vw：1% of viewport’s width
+vh：1% of viewport’s height
+viewport即浏览器可视区域大小
+
+px 转 vw 、vh:
+  px单位尺寸 / 1/100视口的宽度或高度
+*/
+
 .father {
   width: 100 + 20px;
   width: 100px - 20px;
@@ -38,6 +54,8 @@
 .box2 {
   color: @myColor;
 }
+
+
 
 
 
