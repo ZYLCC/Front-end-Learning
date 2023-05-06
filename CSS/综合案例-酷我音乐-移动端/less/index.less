@@ -15,11 +15,16 @@ body {
 
 // 头部区域
 header {
+  position: fixed;
   display: flex;
+  top: 0;
+  left: 0;
   justify-content: space-between;
   align-items: center;
+  width: 100%;
   height: (50 / @vw);
   background-color: #fff;
+  z-index: 2;
 
   .left {
     width: (235 / @vw);
@@ -44,6 +49,8 @@ header {
   position: relative;
   height: (52 / @vw);
   padding: (10 / @vw) (15 / @vw);
+  // 头部固定定位后脱标，会挡住搜索框
+  margin-top: (50 / @vw);
 
   .iconfont {
     position: absolute;
@@ -51,6 +58,7 @@ header {
     bottom: 50%;
     transform: translateY(50%);
     color: #a1a4b3;
+    font-size: (16 / @vw);
   }
 
   input {
@@ -85,6 +93,7 @@ header {
     img {
       width: (345 / @vw);
       height: (108 / @vw);
+      // 缩放 img，当图片比例和父级盒子比例不一致时，避免图片被挤压
       object-fit: cover;
     }
   }
@@ -122,12 +131,12 @@ header {
           display: block;
 
           &:first-child {
-            line-height: (28 / @vw);
+            line-height: 1.8;
           }
 
           &:nth-child(n+2) {
             font-size: (12 / @vw);
-            line-height: (22 / @vw);
+            line-height: 1.8;
             color: #a1a4b3;
           }
         }
@@ -136,7 +145,7 @@ header {
   }
 }
 
-// 排行榜（标题区域）
+// 排行榜（标题区域）公共样式
 .hd {
   display: flex;
   justify-content: space-between;
@@ -238,6 +247,7 @@ header {
       height: (32 / @vw);
       background-color: #f2f3f5;
       border-radius: 50%;
+      font-size: (16 / @vw);
       line-height: (32 / @vw);
       text-align: center;
     }

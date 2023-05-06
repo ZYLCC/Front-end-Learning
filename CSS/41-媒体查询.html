@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>媒体查询</title>
+  <!-- 
+  通过外部css实现：
+    满足 media 里面的查询内容时，就会应用 href 里面的 css 样式 
+  -->
+  <link rel="stylesheet" media="(max-width: 768px)" href="./xx.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    .box {
+      width: 100%;
+      display: flex;
+    }
+
+    .left {
+      width: 300px;
+      height: 500px;
+      background-color: pink;
+      transition: all 1s;
+    }
+
+    .right {
+      flex: 1;
+      height: 500px;
+      background-color: skyblue;
+    }
+
+    @media (max-width: 768px) {
+      .left {
+        display: none;
+      }
+    }
+
+    @media (min-width: 1200px) {
+      .left {
+        width: 50%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <div class="left">
+      拖动窗口：<br>
+      1. 当窗口宽度小于768px时粉色区域会消失<br>
+      2. 当窗口宽度大于1200px时粉色和蓝色区域各占一般宽度
+    </div>
+    <div class="right">
+      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptas sunt, consequatur quam enim ab accusantium quos fuga, soluta accusamus architecto odit facilis maxime possimus eaque nemo cupiditate tempore voluptates ad, quae adipisci esse? Et harum fugit consequuntur eveniet voluptatem. Officiis recusandae sit quas voluptas earum sequi asperiores error excepturi quaerat laudantium, sed maxime eum eos consectetur blanditiis similique? Maxime quaerat fugiat neque aliquid tempora amet, natus odit ipsam, nemo quidem excepturi repellat placeat. Iste nesciunt praesentium ab, aliquam dignissimos asperiores quasi eaque corrupti porro magnam. Deleniti dolorum et nulla officiis aspernatur est, voluptas veniam, omnis iure dolorem distinctio in blanditiis tempore, eaque nam saepe beatae eos animi hic at assumenda fugiat ex doloremque cupiditate. Veritatis temporibus labore suscipit inventore repellat sequi, modi nesciunt itaque consectetur deserunt! Consequatur rerum error dolorum enim deserunt in voluptas, pariatur ex voluptatibus molestiae mollitia voluptatum dolores blanditiis architecto officia? Animi libero suscipit quibusdam adipisci fugit?
+    </div>
+  </div>
+</body>
+</html>
