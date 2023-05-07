@@ -1,0 +1,187 @@
+// out: ../css/index.css
+
+.testbox {
+  height: 2000px;
+}
+
+// 导航
+.bg-body-tertiary {
+  // background-color: transparent !important;
+  background-color: rgba(0, 0, 0, 0.2) !important;
+
+  .navbar-collapse {
+    flex-grow: 0;
+
+    .nav-link {
+      color: #fff;
+
+      &.active {
+        color: #f2b535;
+      }
+    }
+
+    li:nth-child(4) {
+      display: flex;
+    }
+
+    .nav-item:nth-child(4)::before {
+      content: "";
+      display: inline-block;
+      position: relative;
+      left: -2px;
+      align-self: center;
+      width: 13px;
+      height: 15px;
+      background: url(../assets/images/fire.png) 50% no-repeat;
+      background-size: 100% 100%;
+    }
+
+    .nav-item:nth-child(4) {
+      .nav-link {
+        padding-left: 0;
+      }
+    }
+  }
+}
+
+// 轮播图
+/* 
+窗口小于768px，图片高度 250px
+窗口小于992px，图片高度 400px
+窗口大于992px，图片高度 500px
+*/
+.carousel {
+  @media (min-width: 992px) {
+    .carousel-item {
+      height: 500px;
+    }
+  }
+  @media (max-width: 992px) {
+    .carousel-item {
+      height: 400px;
+    }
+  }
+  @media (max-width: 768px) {
+    .carousel-item {
+      height: 250px;
+    }
+  }
+
+  .carousel-item {
+    background-size: cover;
+    background-position: center 0;
+  }
+
+  .carousel-item:nth-child(1) {
+    background-image: url(../assets/uploads/banner_1.jpg);
+  }
+  .carousel-item:nth-child(2) {
+    background-image: url(../assets/uploads/banner_2.jpg);
+  }
+  .carousel-item:nth-child(3) {
+    background-image: url(../assets/uploads/banner_3.jpg);
+  }
+  .carousel-item:nth-child(4) {
+    background-image: url(../assets/uploads/banner_4.jpg);
+  }
+}
+
+
+// 开源项目
+/* 
+窗口大于1200px，一行4个盒子，盒子宽度260px
+窗口小于1200px，一行4个盒子，盒子宽度210px
+窗口小于992px，一行2个盒子，盒子宽度345px
+窗口小于768px，一行一个盒子
+*/
+.project {
+  margin-top: 60px;
+  text-align: center;
+  
+
+  .title {
+    & * {
+      line-height: 1.5em;
+    }
+  }
+
+  .content {
+    .block {
+      height: 210px;
+      padding-bottom: 10px;
+
+      a {
+        display: block;
+        height: 200px;
+        padding: 20px 10px;
+        border-radius: 5px;
+        text-decoration: none;
+        box-shadow: 0;
+        overflow: hidden;
+        transform: translateY(0);
+        transition: all 0.5s;
+
+        &:hover {
+          // animation: block 0.5s forwards;
+          transform: translateY(-5px);
+          box-shadow: 2px 15px 30px -10px #00000099;
+        }
+
+        &:hover .light {
+          animation: light .3s forwards;
+        }
+
+        img {
+          height: 60px;
+        }
+
+        h4 {
+          margin: 20px 0 10px;
+          font-size: 24px;
+          color: #fff;
+        }
+
+        p {
+          font-size: 14px;
+          color: #fff;
+        }
+
+        // 一闪而过的光效
+        .light {
+          position: absolute;
+          top: 0;
+          left: -100%;
+          width: 100%;
+          height: 100%;
+          background-image: -webkit-linear-gradient(0deg,hsla(0,0%,100%,0),
+          hsla(0,0%,100%,.5),hsla(0,0%,100%,0));;
+          -webkit-transform: skewX(-25deg);
+        }
+
+        @keyframes light {
+          to {
+            left: 100%;
+          }
+        }
+      }
+      // @media (min-width: 1400px) {
+      //   a {
+      //     width: 261px;
+      //   }
+      // }
+    }
+
+    .block:nth-child(1) a {
+      background-color: rgb(112, 195, 255);
+    }
+    .block:nth-child(2) a {
+      background-color: rgb(253, 106, 127);
+    }
+    .block:nth-child(3) a {
+      background-color: rgb(127, 142, 160);
+    }
+    .block:nth-child(4) a {
+      background-color: rgb(137, 208, 79);
+    }
+  }
+}
