@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>转换时间</title>
+</head>
+<body>
+  
+  <script>
+    (function() {
+      let n = +prompt('请输入秒数：')
+      let hours = parseInt(n / 3600)
+      let minutes = parseInt(n % 3600 / 60)
+      let seconds = n % 3600 % 60
+
+      function add0(x) {
+        x = x > 10 ? x : '0' + x
+        return x
+      }
+
+      hours = add0(hours)
+      minutes = add0(minutes)
+      seconds = add0(seconds)
+      document.write(`${n}秒转换为${hours}小时${minutes}分${seconds}秒`)
+    })();
+  </script>
+</body>
+</html>
