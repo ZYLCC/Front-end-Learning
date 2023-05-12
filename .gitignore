@@ -2,3 +2,5 @@ course materials
 package-lock.json
 package.json
 node_modules
+test.js
+test.html
