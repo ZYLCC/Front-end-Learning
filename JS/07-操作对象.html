@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>操作对象</title>
+  <style>
+    span {
+      width: 100px;
+      height: 100px;
+      background-color: pink;
+    }
+
+    .test {
+      display: block;
+      width: 200px;
+      height: 200px;
+      margin: 50px auto;
+      background-color: orange;
+      border: 2px solid #000;
+    }
+
+    .red {
+      color: red;
+    }
+    .bgc {
+      background-color: skyblue;
+    }
+    .border {
+      border: 2px solid #000;
+    }
+  </style>
+</head>
+<body>
+  <span>这是一个span</span><hr>
+
+  <div class="box1">这是一个div</div>
+  <div class="box2"></div><hr>
+
+  <img src="../CSS/images/xiao-tu-xian/popular_1.jpg" alt=""><hr>
+
+  <h2>通过classList操作类名</h2><hr>
+  
+  <script>
+    /* 因为 body 标签是唯一的，所以不用 querySelector */
+    const body = document.body
+
+
+    /* innerText 纯文本，不解析标签 */
+    const box1 = document.querySelector('.box1')
+    box1.innerText = '<strong>这是一个盒子</strong>'
+
+
+    /* innerHTML 解析标签 */
+    const box2 = document.querySelector('.box2')
+    box2.innerHTML = '<i>这是一个盒子</i>'
+
+
+    /* 修改对象的属性 */
+    const img = document.querySelector('img')
+    img.src = '../CSS/images/xiao-tu-xian/popular_2.jpg'
+    img.title = '这是一张图片'
+
+
+    /* 修改对象的样式 */
+    // 对象.style.样式属性 = '值'
+    box1.style.color = 'red'
+    box2.style.border = '2px solid black'
+    // 多组单词的采取‘小驼峰’命名法
+    box2.style.backgroundColor = 'skyblue'
+    
+    
+    /* 操作对象的 类名 */
+    const span = document.querySelector('span')
+    // className  !会覆盖原有类名
+    span.className = 'test'
+    box1.className = 'box1 test'
+    // 通过classList 操作类名
+    const h2 = document.querySelector('h2')
+    // 添加类
+    h2.classList.add('red')
+    h2.classList.add('bgc')
+    // 删除类
+    h2.classList.remove('red')
+    // 切换类（有则删除，无则添加）
+    h2.classList.toggle('border')
+
+
+    
+  </script>
+</body>
+</html>

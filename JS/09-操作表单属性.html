@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>操作表单属性</title>
+</head>
+<body>
+  input框：<input type="text" value="电脑"><br>
+
+  checkbox框(默认选中)：<input type="checkbox" name="" id="" class="checked"> &nbsp;&nbsp;&nbsp;
+  checkbox框(禁用)：<input type="checkbox" name="" id="" class="disabled"><hr>
+
+  <script>
+    const uname = document.querySelector('input')
+    // 获取表单的值
+    document.write(`input框内修改前的值是：${uname.value}<br>`)
+    // 设置表单的值
+    uname.value = '笔记本'
+    document.write(`input框内修改后的值是：${uname.value}<hr>`)
+    // 设置表单元素的属性
+    uname.type = 'password'
+
+    // 表单某些属性如：disabled、checked、selected等，用布尔值表示该属性是否生效
+    const checked_box = document.querySelector('.checked')
+    const disabled_box = document.querySelector('.disabled')
+    checked_box.checked = true
+    disabled_box.disabled = true
+
+  </script>
+</body>
+</html>

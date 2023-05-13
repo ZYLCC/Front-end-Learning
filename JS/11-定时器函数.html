@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>定时器函数</title>
+  <style>
+    button {
+      width: 120px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <!-- 定时函数使用 -->
+  <div class="time"></div><hr>
+  <div class="num"></div><hr>
+
+  <!-- 倒计时阅读用户协议 -->
+  <textarea name="" id="" cols="30" rows="10">Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem magnam, non natus ratione iste ipsa asperiores perferendis enim sunt dicta quibusdam eos qui veritatis nulla cumque ad cum nobis temporibus accusamus obcaecati! Sapiente non commodi vero aliquid delectus debitis quisquam voluptates minus maxime quaerat consequuntur modi, rem unde velit nam praesentium incidunt, quae sed. Ipsam explicabo repellat dicta qui at hic nobis, iusto similique nulla beatae quibusdam voluptates! Odio error voluptatum nisi a consequatur mollitia perspiciatis quo maxime expedita quaerat commodi tempore sequi cumque corporis consectetur dolores quae, pariatur dicta explicabo reiciendis obcaecati voluptatem? Consectetur sit porro quae laborum nostrum!</textarea><br>
+  <button disabled="disabled"></button>
+  <script>
+    /* 间隔函数：setInterval(fn, t) 
+      1. 每隔 t(ms) 执行一次 fn 函数
+      2. 定时器返回的是一个id数字
+    */
+
+    // 1. 匿名函数写法
+    /* setInterval(function() {
+      let date = new Date() // 获取当前时间
+      document.write(`一秒钟打印一条，${date}<br>`)
+    }, 1000) */
+
+    // 2. 函数名写法
+    // 2.1 带括号函数名写法，不常用
+    // setInterval('fn()', 1000)
+    // 2.2 不带括号函数名写法
+    timerFn()
+    let timer = setInterval(timerFn, 1000)
+
+    function timerFn() {
+      const time_div = document.querySelector('.time')
+      let date = new Date() // 获取当前时间
+      time_div.innerText = `现在时间是：${date}`
+    }
+    console.log(timer)
+
+    // 3. 关闭定时器   (关闭对应定时器的 变量名)
+    let cnt = 0
+    cnterFn()
+    let cnter = setInterval(cnterFn, 1000)
+
+    function cnterFn() {
+      const num_div = document.querySelector('.num')
+      num_div.innerText = `一秒钟数字加一(5秒后停止)：${cnt++}`
+      if (cnt > 5) {
+        clearInterval(cnter) // 关闭定时器
+      }
+    }
+    console.log(cnter)
+
+    // 4. 实现一个倒计时阅读用户协议
+    const btn = document.querySelector('button')
+    let btn_timer = setInterval(countdown, 1000)
+    let cnt_down = 10 
+    countdown()
+    function countdown() {
+      btn.innerText = `请阅读该协议(${cnt_down--})`
+      if (cnt_down === -1) { // 因为前面是 cnt_down--
+        btn.disabled = false
+        btn.innerText = '我同意该协议'
+        clearInterval(btn_timer)
+      }
+    }
+  </script>
+</body>
+</html>

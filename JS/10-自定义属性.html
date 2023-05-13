@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>自定义属性</title>
+</head>
+<body>
+  <div data-id="1" data-xxx="自定义属性">div1</div>
+  <div data-id="2">div2</div>
+  <div data-id="3">div3</div>
+  <div data-id="4">div4</div>
+  <div data-id="5">div5</div><hr>
+
+  <script>
+    /* 自定义属性：
+      1. html5中推出专门的 data- 自定义属性
+      2. 在标签上一律以 data- 开头
+      3. 在 DOM 对象上一律以 dataset 对象方式获取
+    */
+    const one = document.querySelector('div')
+    const divs = document.querySelectorAll('div')
+    for (let i = 0; i < divs.length; i++) {
+      document.write(`div${i + 1} 的自定义属性有：{ `)
+      for (let key in divs[i].dataset) {
+        document.write(`${key} : ${divs[i].dataset[key]} `)
+      }
+      document.write('}<br>')
+    }
+  </script>
+</body>
+</html>
