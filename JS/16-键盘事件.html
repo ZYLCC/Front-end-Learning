@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>键盘事件</title>
+  <style>
+    body {
+      width: 100%;
+    }
+    .out {
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <!-- 键盘事件 -->
+  <input type="text"><br><hr>
+  <div class="box1">键盘待按下</div><hr>
+  <div class="box2">键盘待按下</div><hr>
+  实时显示输入框内容：<span class="out"></span><hr>
+
+  <script>
+    const input = document.querySelector('input')
+    const box1 = document.querySelector('.box1')
+    const box2 = document.querySelector('.box2')
+    const out = document.querySelector('.out')
+    let cnt = 0
+
+    // 1. 键盘按下(长按会反复执行)
+    input.addEventListener('keydown', function() {
+      cnt++
+      box1.innerHTML = `按下了键盘${cnt}次`
+      box2.innerHTML = '键盘待松开'
+    })
+    // 2. 键盘弹起
+    input.addEventListener('keyup', function() {
+      box2.innerHTML = '松开了键盘'
+    })
+    // 3. input输入事件
+    input.addEventListener('input', function() {
+      out.innerHTML = input.value
+    })
+  </script>
+</body>
+</html>

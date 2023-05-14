@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>按钮控制随机点名</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    
+    h2 {
+      text-align: center;
+    }
+    
+    .box {
+      width: 600px;
+      margin: 50px auto;
+      display: flex;
+      font-size: 25px;
+      line-height: 40px;
+    }
+    
+    .uname {
+      width: 450px;
+      height: 40px;
+      color: red;
+    }
+    
+    .btns {
+      text-align: center;
+    }
+    
+    .btns button {
+      width: 120px;
+      height: 35px;
+      margin: 0 50px;
+    }
+  </style>
+</head>
+
+<body>
+  <h2>随机点名</h2>
+  <div class="box">
+    <span>名字是：</span>
+    <div class="uname">这里显示姓名</div>
+  </div>
+  <div class="btns">
+    <button class="start">开始</button>
+    <button class="end" disabled>结束</button>
+  </div>
+
+  <script>
+    // 数据数组
+    const arr = ['马超', '黄忠', '赵云', '关羽', '张飞', '刘备', '吕布']
+    const start_btn = document.querySelector('.start')
+    const end_btn = document.querySelector('.end')
+    const uname = document.querySelector('.box .uname')
+    let idx // 索引
+    let n = arr.length  // 数组长度
+    let timerId // 定时器id
+
+    start_btn.addEventListener('click', function (){
+      if (n > 1) {
+        timerId = setInterval(function () {  
+          idx = parseInt(Math.random() * n)
+          uname.innerHTML = arr[idx]
+        }, 50)
+        start_btn.disabled = true
+        end_btn.disabled = false
+      } else {
+        uname.innerHTML = arr[0]
+        start_btn.disabled = true
+        end_btn.disabled = true
+      }
+
+    })
+
+    end_btn.addEventListener('click', function() {
+      clearInterval(timerId)
+      arr.splice(idx, 1)
+      start_btn.disabled = false
+      end_btn.disabled = true
+      console.log(arr)
+      n--
+    })
+    
+
+  </script>
+</body>
+
+</html>
