@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>事件流</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    .father {
+      width: 500px;
+      height: 500px;
+      margin: 20px auto;
+      padding: 150px 0;
+      background-color: pink;
+    }
+
+    .son {
+      width: 200px;
+      height: 200px;
+      margin: 0 auto;
+      background-color: skyblue;
+    }
+  </style>
+</head>
+<body>
+  <div class="father">
+    <div class="son"></div>
+  </div><hr>
+
+  <!-- 事件解绑（移除） -->
+  <button>点击</button>
+  <script>
+    /* 事件流：事件捕获 + 事件冒泡 */
+
+    const fa = document.querySelector('.father')
+    const son = document.querySelector('.son')
+
+    // 监听事件默认是按 事件冒泡 obj.addEventListener('事件', 函数, false) 默认是false
+    // 改为 true 的话，就是按 事件捕获 顺序执行
+
+    // 事件冒泡：当一个元素触发事件后，会依次向上调用所有父级元素的‘同名事件’
+    // document.addEventListener('click', function() {
+    //   alert('我是爷爷')
+    // })
+
+    fa.addEventListener('click', function() {
+      alert('我是爸爸')
+    })
+
+    son.addEventListener('click', function(e) {
+      alert('我是儿子')
+      e.stopPropagation()   // 通过 事件对象.stopPropagation() 来阻止事件流动（能阻止捕获，也能阻止冒泡）
+    })
+
+    /* 鼠标经过事件 */
+    // mouseover 和 mouseout 会有冒泡效果 
+    // mouseenter 和 mouseleave 没有冒泡效果（推荐使用）
+
+
+    /* 事件解绑 */
+    const btn = document.querySelector('button')
+
+    //// L0 事件解绑
+    // btn.onclick = function() {
+    //   alert('点击了~')
+    //   // 事件解绑
+    //   this.onclick = null
+    // }
+
+    //// L2 事件解绑
+    btn.addEventListener('click', fn)
+    function fn() {
+      alert('点击了~')
+      // 事件解绑：事件对象.removeEventListener('click', fn[, options])  !!! 匿名函数无法被解绑 !!!
+      // options 为一个布尔值，指定是否为 捕获监听器，默认 false
+      // 所以如果同一个事件监听器分别为“事件捕获（capture 为 true）”和“事件冒泡（capture 为 false）”注册了一次，这两个版本的监听器需要分别移除。
+      this.removeEventListener('click', fn)  // 事件解绑
+    }
+  </script>
+</body>
+</html>

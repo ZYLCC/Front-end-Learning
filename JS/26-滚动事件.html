@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>滚动事件</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      height: 3500px;
+    }
+
+    /* 页面滚动信息盒子 */
+    .box {
+      position: fixed;
+      width: 300px;
+      height: 50px;
+      line-height: 1.5em;
+      text-align: center;
+      background-color: skyblue;
+      color: #fff;
+    }
+
+    /* 文本框 */
+    .txt {
+      display: none;
+      position: fixed;
+      left: 50%;
+      transform: translate(-50%);
+      overflow: scroll;
+      width: 300px;
+      height: 300px;
+      margin: auto;
+      border: 1px solid #000;
+    }
+
+    .txt .txt-box {
+      position: sticky;
+      top: 0;
+      width: 283px;
+      height: 50px;
+      background-color: rgba(135, 206, 235, 0.9);
+      line-height: 50px;
+      text-align: center;
+      color: #fff;
+    }
+
+    span {
+      color: black;
+    }
+
+    /* 侧边尺子 */
+    .big-content {
+      position: absolute;
+      right: 0;
+      cursor: pointer;
+    }
+
+    .content {
+      display: flex;
+      flex-wrap: wrap;
+      border-top: 1px solid #000;
+      right: 0;
+      width: 60px;
+      height: 500px;
+      background-color: pink;
+    }
+
+    .content span {
+      width: 100%;
+      text-align: center;
+    }
+
+    h3 {
+      position: fixed;
+      left: 50%;
+      transform: translate(-50%);
+      color: #000;
+    }
+  </style>
+</head>
+<body>
+  <h3>当页面向上滚动了1000px时，会显示一个文本框</h3>
+
+  <!-- 侧边尺 -->
+  <div class="big-content">
+    <div class="content">0px <span>点击粉色区域回顶部</span></div>
+    <div class="content">500px<span>点击粉色区域回顶部</span></div>
+    <div class="content">1000px<span>点击粉色区域回顶部</span></div>
+    <div class="content">1500px<span>点击粉色区域回顶部</span></div>
+    <div class="content">2000px<span>点击粉色区域回顶部</span></div>
+    <div class="content">2500px<span>点击粉色区域回顶部</span></div>
+    <div class="content">3000px<span>点击粉色区域回顶部</span></div>
+  </div>
+
+  <!-- 显示页面滚动信息的盒子 -->
+  <div class="box"></div>
+
+  <!-- 文本框 --> 
+  <div class="txt">
+    <div class="txt-box"></div>
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem reprehenderit corporis doloribus ab! Magnam officiis est aliquam quod earum doloribus laudantium, assumenda, adipisci exercitationem, consequuntur sunt nostrum ipsam? Deserunt dolor dolorum iure et similique, nobis impedit expedita. Nihil, inventore corrupti animi blanditiis nostrum harum dolor nam, aperiam, deserunt dolores eum ab laborum? Amet consequatur similique impedit voluptates quos maxime, nobis accusamus sunt praesentium eum tempora velit exercitationem, quas vitae alias repellat tenetur, optio tempore eos ab. Velit nam fugiat ipsa a cumque veritatis eaque, maiores, laboriosam doloremque, nemo dicta numquam. Omnis culpa adipisci earum, eos quaerat modi alias commodi soluta laboriosam voluptate delectus temporibus, sapiente quod est dolores saepe neque perferendis tempora impedit aperiam. Blanditiis aut quas quae vel accusamus nobis libero ex facere unde vitae minima sed accusantium culpa iste quo ipsam, odio quisquam quia, itaque reiciendis earum quos tenetur? Doloremque velit voluptas assumenda unde recusandae natus sit consectetur hic at fugit praesentium blanditiis, incidunt aperiam iusto, excepturi officiis corporis vero officia quo? Enim soluta iste, vel nulla debitis deserunt quis nam tempora, blanditiis perspiciatis, nihil rem placeat omnis voluptatum earum esse dolorem facilis pariatur rerum repellendus officia deleniti dignissimos. Porro dolor, voluptate asperiores molestiae placeat cupiditate at perspiciatis?
+  </div>
+
+  <script>
+    const box = document.querySelector('.box')
+    const h3 = document.querySelector('h3')
+    const txt = document.querySelector('.txt')
+    const txt_box = document.querySelector('.txt-box')
+    const ruler = document.querySelector('.big-content')
+    let cnt = 0
+
+
+    // 绑定页面滚动事件
+    window.addEventListener('scroll', function() {
+      cnt++
+      // document.documentElement 获得的是 HTML 标签
+      // 但 body 标签是这样获得的 document.body
+      let up = document.documentElement.scrollTop
+      box.innerHTML = `页面滚动事件被触发了<span>${cnt}</span>次<br>页面向上滚动了<span>${up}</span>px`
+
+      // 滚到1000px，显示文本框
+      if (up >= 1000) {
+        txt.style.display = 'block'
+        h3.style.display = 'none'
+      } else {
+        txt.style.display = 'none'
+        h3.style.display = 'block'
+      }
+    })
+
+    // 绑定文本框的滚动事件
+    txt.addEventListener('scroll', function() {
+      // scrollTop 和 scrollLett属性，获取元素内容往上、左被卷去的距离（px），这两个值可读写
+      txt_box.innerHTML = `<strong>该盒子内容向上滚动了<span>${this.scrollTop}</span>px</strong>`
+    })
+
+    // 绑定侧边尺的点击事件
+    ruler.addEventListener('click', function() {
+      // 点击，页面回顶部
+      // document.documentElement.scrollTop = 0
+      // 也可以这样写 window.scrollTo(x, y)
+      window.scrollTo(0, 0)
+    })
+  </script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>页面加载事件</title>
+  <script>
+    /* load 事件：
+      注意:不光可以监听整个页面资源加载完毕，也可以针对某个资源绑定load事件
+    */
+    window.addEventListener('load', function() {
+      // 等待页面所有资源加载完毕，就会执行回调函数
+    })
+
+    img.addEventListener('load', function() {
+      // 等待图片加载完毕，再执行函数
+    })
+
+    /*  DOMContentLoaded 事件
+     */
+    document.addEventListener('DOMContentLoaded', function() {
+      // 当初始的HTML文档被完全加载和解析完成之后，DOMContentLoaded 事件被触发，而无需等待样式表、图像等完全加载
+    })
+  </script>
+</head>
+<body>
+  
+</body>
+</html>

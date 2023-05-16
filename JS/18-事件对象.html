@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>事件对象</title>
+  <style>
+
+  </style>
+</head>
+<body>
+  <button>点击</button><br>
+  点击时是否同时按下 alt 键：<span class="alt-flag"></span><br>
+  点击时是否同时按下 ctrl 键：<span class="ctrl-flag"></span><hr>
+
+  <input type="text"><br>
+  刚才按下的键是：<span class="key"></span><hr>
+
+  <script>
+    /* 事件对象:
+      1. 在事件绑定的回调函数的第一个参数就是事件对象
+      2. 一般命名为 event、ev、e
+    */
+    const btn = document.querySelector('button')
+    const alt = document.querySelector('.alt-flag')
+    const ctrl = document.querySelector('.ctrl-flag')
+    const input = document.querySelector('input')
+    const key_down = document.querySelector('.key')
+
+    btn.addEventListener('click', function(event) {
+      console.log(event.altKey)  // 判断点击时是否同时按了 alt 键
+      alt.innerHTML = event.altKey
+      console.log(event.ctrlKey) // 判断点击时是否同时按了 ctrl 键
+      ctrl.innerHTML = event.ctrlKey
+    })
+
+    input.addEventListener('keyup', function(event) {
+      key_down.innerHTML = event.key === ' ' ? 'Space' : event.key
+    })
+  </script>
+</body>
+</html>

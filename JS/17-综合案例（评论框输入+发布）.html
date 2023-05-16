@@ -10,6 +10,7 @@
     .wrapper {
       min-width: 400px;
       max-width: 800px;
+      margin: 10px auto;
       display: flex;
       justify-content: flex-end;
     }
@@ -63,6 +64,7 @@
       min-width: 400px;
       max-width: 800px;
       display: flex;
+      margin: 10px auto;
     }
 
     .list .item {
@@ -121,6 +123,8 @@
   <script>
     const txt_input = document.querySelector('#tx')
     const total = document.querySelector('.total')
+    const review_item = document.querySelector('.list .item')
+    const review_txt = document.querySelector('.list .text')
 
     // 输入框获取焦点时，显示字数
     txt_input.addEventListener('focus', function() {
@@ -137,6 +141,18 @@
     // 输入框失去焦点时，不显示字数
     txt_input.addEventListener('blur', function() {
       total.style.opacity = '0'
+    })
+
+    // 按下回车，发送评论
+    txt_input.addEventListener('keyup', function(e) {
+      if (e.key === 'Enter' && this.value.trim() !== '') { // str.trim() 去除字符串左右的空格
+        review_txt.innerHTML = this.value
+        total.innerHTML = `0/200字`
+        // this 环境对象（普通函数里的 this 是 window）
+        this.value = ''  // 删除输入框的文字       
+        this.blur()      // 让输入框失去焦点
+        review_item.style.display = 'block'
+      }
     })
   </script>
 </body>

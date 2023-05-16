@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>事件委托</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    ul {
+      position: relative;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 600px;
+      height: 200px;
+      margin: 20px auto;
+      background-color: pink;
+      color: #fff;
+      cursor: pointer;
+    }
+
+    ul li {
+      width: 100px;
+      height: 100px;
+      background-color: skyblue;
+      list-style: none;
+      line-height: 100px;
+    }
+
+    ul p {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translate(-50%);
+      background-color: skyblue;
+    }
+
+    h4 {
+      width: 330px;
+      margin: 10px auto 0;
+    }
+  </style>
+</head>
+<body>
+  <p><strong>事件委托：</strong><br>
+  &nbsp;&nbsp;利用事件流的特征解决一些开发需求的知识技巧<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;<strong>优点：</strong> 减少注册次数，可以提高程序性能<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;<strong>原理：</strong> 事件委托是利用事件冒泡的特点，给父元素注册事件，当我们触发子元素的时候，会冒泡到父元素身上，从而触发父元素的事件<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;<strong>实现：</strong> 事件对象.target.tagName可以获得真正触发事件的元素</p>
+  <hr>
+  <h4>事件要求：点击 li 标签使得 li 标签变背景颜色</h4>
+  <ul>
+    <li>第1个孩子(li)</li>
+    <li>第2个孩子(li)</li>
+    <li>第3个孩子(li)</li>
+    <li>第4个孩子(li)</li>
+    <li>第5个孩子(li)</li>
+    <p>我不需要变色(p)</p>
+  </ul>
+
+  <script>
+    /* 事件委托：
+    利用事件流的特征解决一些开发需求的知识技巧
+      优点：减少注册次数，可以提高程序性能
+      原理：事件委托是利用事件冒泡的特点，给父元素注册事件，当我们触发子元素的时候，会冒泡到父元素身上，从而触发父元素的事件
+      实现：事件对象.target.tagName可以获得真正触发事件的元素
+    */
+
+    const ul = document.querySelector('ul')
+    ul.addEventListener('click', function(e) {
+      // 通过事件对象里的 target 获得点击的对象
+      // 通过 e.target.tagName 来判断标签
+      if (e.target.tagName === 'LI') {
+        e.target.style.backgroundColor = 'purple'
+      }
+    })
+  </script>
+</body>
+</html>
