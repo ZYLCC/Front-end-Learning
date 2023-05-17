@@ -28,6 +28,23 @@
     window.addEventListener('resize', function () {
       console.log(1)
     })
+
+    const map = {
+      'bottom': '该盒子的底部距离视口顶部：',
+      'left': '该盒子最左距离视口左边：',
+      'top': '该盒子顶部距离视口顶部：',
+      'right': '该盒子最右距离视口左边：',
+      'height': '该盒子高为：',
+      'width': '该盒子宽为：'
+    }
+
+    // element.getBoundingClientRect()
+    const rect = div.getBoundingClientRect()
+    for (key in map) {
+      let para = document.createElement('p')
+      para.textContent = `${map[key]}${rect[key]}px`
+      document.body.appendChild(para)
+    }
   </script>
 </body>
 

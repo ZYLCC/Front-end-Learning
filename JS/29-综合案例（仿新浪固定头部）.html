@@ -80,6 +80,12 @@
 
     // header.style.top = `-${header.offsetHeight}px`
 
+    // 绑定页面滚动事件
+    window.addEventListener('scroll', function() {
+      const top = document.documentElement.scrollTop
+      header.style.top = top >= seckill.offsetTop ? '0' : '-80px'
+    })
+
   </script>
 </body>
 
