@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>时间对象</title>
+  <style>
+    div {
+      width: 300px;
+      /* height: 40px; */
+      margin: 10px auto;
+      border: 1px solid pink;
+      text-align: center;
+      line-height: 40px;
+    }
+
+    h3 {
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <h3>日期表示：</h3>
+  <div></div>
+  <div class="box1"></div>
+  <div class="box2"></div><hr>
+  <h3>时间戳表示：</h3>
+  <div class="box3"></div>
+  <div class="box4"></div>
+  <div class="box5"></div>
+  
+  <script>
+    // 实例化日期对象
+    const date = new Date()
+    console.log('当前时间：', date)
+
+    const date1 = new Date(2008-8-8)
+    console.log('特定时间：', date1)
+
+    // 日期对象的方法
+    console.log('当前时间：')
+    console.log(date.getFullYear())
+    console.log(date.getMonth() + 1) // 0~11
+    console.log(date.getDate()) // 月份的第几天
+    console.log(date.getDay())  // 0~6, 0 代表星期天
+
+    
+    // 页面实时显示时间
+    // 1. 
+    const div = document.querySelector('div')
+    function getMyDate() {
+      const date = new Date()
+      let h = date.getHours()
+      let m = date.getMinutes()
+      let s = date.getSeconds()
+      h = h < 10 ? '0' + h : h
+      m = m < 10 ? '0' + m : m
+      s = s < 10 ? '0' + s : s
+      return `现在是: ${date.getFullYear()}年${date.getMonth() + 1}月${date.getDate()}号 ${h}:${m}:${s}`
+    }
+
+    div.innerHTML = getMyDate()
+    setInterval(function () {
+      div.innerHTML = getMyDate()
+    }, 1000)
+
+    // 2. 
+    const box1 = document.querySelector('.box1')
+    box1.innerHTML = date.toLocaleString()
+    setInterval(function() {
+      const date = new Date()
+      box1.innerHTML = date.toLocaleString()
+    }, 1000)
+
+    // 3. 只显示日期
+    const box2 = document.querySelector('.box2')
+    box2.innerHTML = date.toLocaleDateString()
+
+
+    // 获得时间戳
+    const box3 = document.querySelector('.box3')
+    const box4 = document.querySelector('.box4')
+    const box5 = document.querySelector('.box5')
+    box3.innerHTML = date.getTime()
+    box4.innerHTML = Date.now() - +new Date('2016-6-17')
+    
+    setInterval(function() {  
+      const date = new Date('2023-6-17')
+      // 1. 可获得指定时间距现在的时间戳
+      box5.innerHTML = `现在距2023年6月17日0时0分0秒还剩：${date.getTime() - Date.now()}毫秒`
+
+      // 2. 可获得指定时间距现在的时间戳
+      box4.innerHTML = `现在距2016年6月17日0时0分0秒已过去：${Date.now() - (+new Date('2016-6-17'))}毫秒`
+
+      // 3. 只能得到当前的时间戳
+      box3.innerHTML = `现在距1970年1月1日0时0分0秒已过去：${Date.now()}毫秒`
+    }, 10)
+
+
+  </script>
+</body>
+</html>
