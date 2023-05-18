@@ -34,12 +34,12 @@
   </style>
 </head>
 <body>
-  <h3>点击广告2，让广告1和广告3变色，同时生成不可关闭的广告4和广告0：</h3>
+  <h3>点击广告2，让广告1和广告3变色，同时生成广告4和广告0：</h3>
   <div class="grandfa">
     <div class="father">广告1
       <div class="son">×</div>
     </div>
-    <div class="father">广告2
+    <div class="father father2">广告2
       <div class="son">×</div>
     </div>
     <div class="father">广告3
@@ -52,56 +52,91 @@
     const father2 = document.querySelector('.father:nth-child(2)')
     const fathers = document.querySelectorAll('.father')
     const sons = document.querySelectorAll('.son')
-    /* 增加节点 */
-    
-    // 先增加一个元素节点  document.createElement('标签')
-    const father4 = document.createElement('div')
-    const father0 = document.createElement('div')
-    
-    father4.innerHTML = '牛皮癣广告4<div class="son">×</div>'
-    father4.classList.add('father')
-
-    father0.innerHTML = '牛皮癣广告0<div class="son">×</div>'
-    father0.classList.add('father')
-
-    father2.addEventListener('click', function() {
-      // 想要在界面中看到，还得插入到某个父元素中
-      // 1. 插入到父元素的最后一个子元素： 父元素.appendChild(要插入的元素)
-      grandfa.appendChild(father4)
-
-      // 2. 插入到父元素中某个子元素前面： 父元素.insertBefore(要插入的元素, 在哪个元素前面)
-      grandfa.insertBefore(father0, father2.previousElementSibling)
-
-    })
 
 
     /* 查找元素 */
     // 1. 父节点 （最近一级的父节点）
-    for (let i = 0; i < sons.length; i++) {
-      sons[i].addEventListener('click', function() {
-        this.parentNode.style.display = 'none'
-      })
-    }
 
-    // 2. 子节点（返回的是伪数组，选择的是亲儿子）
-    for (let i = 0; i < fathers.length; i++) {
-      fathers[i].addEventListener('mouseenter', function() {
-        this.children[0].style.display = 'block'
-      })
-      fathers[i].addEventListener('mouseleave', function() {
-        this.children[0].style.display = 'none'
-      })
-    }
+    // 事件委托(点击关闭按钮，关闭广告 and )
+    grandfa.addEventListener('click', function(e) {
+      e.stopPropagation()
+      const obj = e.target
+      if (obj.classList[0] === 'son') {
+        obj.parentNode.style.display = 'none'
+      } else if (e.target.classList[1] === 'father2') {
 
-    // 3. 兄弟节点
-    father2.addEventListener('click', function() {
-      // 上一个兄弟
-      this.previousElementSibling.style.backgroundColor = 'purple'
-      // 下一个兄弟
-      this.nextElementSibling.style.backgroundColor = 'purple'
+        /* 增加节点 */
+        // 先增加一个元素节点  document.createElement('标签')
+        const father4 = document.createElement('div')
+        const father0 = document.createElement('div')
+        father4.innerHTML = '广告4<div class="son">×</div>'
+        father4.classList.add('father')
+        father0.innerHTML = '广告0<div class="son">×</div>'
+        father0.classList.add('father')
+        // 想要在界面中看到，还得插入到某个父元素中
+        // 插入到父元素的最后一个子元素： 父元素.appendChild(要插入的元素)
+        grandfa.appendChild(father4)
+        // 插入到父元素中某个子元素前面： 父元素.insertBefore(要插入的元素, 在哪个元素前面)
+        grandfa.insertBefore(father0, obj.previousElementSibling)
+
+
+        // 2. 兄弟节点
+        // 上一个兄弟
+        obj.previousElementSibling.style.backgroundColor = 'purple'
+        // 下一个兄弟
+        obj.nextElementSibling.style.backgroundColor = 'purple'
+
+        
+      }
     })
 
+    // for (let i = 0; i < sons.length; i++) {
+    //   sons[i].addEventListener('click', function(e) {
+    //     e.stopPropagation()
+    //     this.parentNode.style.display = 'none'
+    //   })
+    // }
+
+    // 3. 子节点（返回的是伪数组，选择的是亲儿子）
+
+    // 事件委托(移入广告区域，显示关闭按钮)
+    grandfa.addEventListener('mouseover', function(e) {
+      const obj = e.target
+      if (obj.classList[0] === 'father') {
+        obj.children[0].style.display = 'block'
+      } else if (obj.classList[0] === 'son') {
+        obj.style.display = 'block'
+      }
+    })
+
+    grandfa.addEventListener('mouseout', function(e) {
+      const obj = e.target
+      if (obj.classList[0] === 'father') {
+        obj.children[0].style.display = 'none'
+      } else if (obj.classList[0] === 'son') {
+        obj.style.display = 'none'
+      }
+    })
+
+    // for (let i = 0; i < fathers.length; i++) {
+    //   fathers[i].addEventListener('mouseenter', function() {
+    //     this.children[0].style.display = 'block'
+    //   })
+    //   fathers[i].addEventListener('mouseleave', function() {
+    //     this.children[0].style.display = 'none'
+    //   })
+    // }
+
     
+
+    
+    
+
+    /* 克隆节点 */
+    // 元素.cloneNode(true/false)  true 代表采用深度克隆（后代节点也会被克隆），false 则相反（只克隆标签）
+
+    /* 删除节点 */
+    // 父元素.removeChild(子元素)
   </script> 
 </body>
 </html>

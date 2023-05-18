@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>学生信息管理</title>
+  <link rel="stylesheet" href="css/index.css" />
+</head>
+
+<body>
+  <h2>新增学员</h2>
+  <form class="info" autocomplete="off">
+    姓名：<input type="text" class="uname" name="uname" />
+    年龄：<input type="text" class="age" name="age" />
+    薪资：<input type="text" class="salary" name="salary" />
+    性别:
+    <select name="gender" class="gender">
+      <option value="男">男</option>
+      <option value="女">女</option>
+    </select>
+    就业城市：<select name="city" class="city">
+      <option value="北京">北京</option>
+      <option value="上海">上海</option>
+      <option value="广州">广州</option>
+      <option value="深圳">深圳</option>
+      <option value="曹县">曹县</option>
+    </select>
+    <!-- 类型设置为 button，阻止点击就提交表单，也可通过后面 js 阻止默认事件 -->
+    <button class="add">录入</button> 
+    <button type="reset">重写</button> 
+  </form>
+
+  <h2>就业榜</h2>
+  <div class="hd">
+    <span>共有 <strong class="cnt">0</strong> 项数据</span>
+    <a href="javascript:" class="clear" >全部删除</a>
+  </div>
+  <table>
+    <thead>
+      <tr>
+        <th>序号</th>
+        <th>姓名</th>
+        <th>年龄</th>
+        <th>性别</th>
+        <th>薪资</th>
+        <th>就业城市</th>
+        <th>录入时间</th>
+        <th>操作</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- 
+        <tr>
+          <td>1001</td>
+          <td>欧阳霸天</td>
+          <td>19</td>
+          <td>男</td>
+          <td>15000</td>
+          <td>上海</td>
+          <td>时间</td>
+          <td>
+            <a href="javascript:">删除</a>
+          </td>
+        </tr> 
+        -->
+    </tbody>
+  </table>
+  <script>
+    let info_arr = JSON.parse(localStorage.getItem('info_arr')) || []
+    const info = document.querySelector('.info')
+    const add_btn = document.querySelector('.add')
+    const uname = document.querySelector('.uname')
+    const age = document.querySelector('.age')
+    const gender = document.querySelector('.gender')
+    const salary = document.querySelector('.salary')
+    const city = document.querySelector('.city')
+    const tbody = document.querySelector('tbody')
+    const items = document.querySelectorAll('.info [name]')
+    const cnt = document.querySelector('.hd .cnt')
+    const clear_all = document.querySelector('.hd .clear')
+    const date = new Date()
+    
+    // 本地存储有数据则打印
+    if (info_arr) renderTable() 
+    // 表单提交事件
+    info.addEventListener('submit', function(e) {
+      // 阻止默认事件
+      e.preventDefault()
+      
+      for (let i = 0; i < items.length; i++) { // 有空值就弹窗
+        if (!items[i].value) {
+          return alert('数据不能为空！')
+        }
+      }
+
+      // 创建一个新对象
+      const info_obj = {
+        uname: uname.value,
+        age: age.value,
+        gender: gender.value,
+        salary: salary.value,
+        city: city.value,
+        time: date.toLocaleString()
+      }
+      // 对象push入数组
+      info_arr.push(info_obj)
+      // 数组存入本地存储
+      localStorage.setItem('info_arr', JSON.stringify(info_arr))
+
+      // 渲染表格
+      renderTable()
+
+      // 清空表单
+      this.reset()
+    })
+
+    // 点击删除对应 tr 事件 (事件委托)
+    tbody.addEventListener('click', function(e) {
+      const obj = e.target
+      if (obj.tagName === 'A') {
+        if (confirm('确认删除该条数据？')) {  // 通过对话框确认删除
+          // 获得对应的序号(也可以渲染时，给 a 标签添加自定义属性)
+          // const id = +obj.parentNode.parentNode.children[0].innerHTML
+          const id = obj.dataset.id
+          info_arr.splice(id - 1, 1)
+          // 更新后的数组存入本地存储
+          localStorage.setItem('info_arr', JSON.stringify(info_arr))
+
+        // 渲染表格
+        renderTable()
+        }
+      }
+    })
+
+    // 删除全部数据
+    clear_all.addEventListener('click', function() {
+      info_arr = JSON.parse(localStorage.getItem('info_arr')) || []
+      if (info_arr.length) {
+        if (confirm('确认删除所有数据吗？')) { // 对话框确认是否删除
+          localStorage.removeItem('info_arr')
+          renderTable()
+        } 
+      } else {
+        alert('当前没有数据可删除！')
+      }
+      
+    })
+
+    // 渲染表格函数
+    function renderTable() {
+      info_arr = JSON.parse(localStorage.getItem('info_arr')) || []
+      cnt.innerHTML = info_arr.length 
+      tbody.innerHTML = ''   // 先清空 tbody 然后重新渲染
+
+      // for (let i = 0; i < info_arr.length; i++) {
+      //   const tr = document.createElement('tr')
+      //   tr.innerHTML = `
+      //     <td>${i + 1}</td>
+      //     <td>${info_arr[i]['uname']}</td>
+      //     <td>${info_arr[i]['age']}</td>
+      //     <td>${info_arr[i]['gender']}</td>
+      //     <td>${info_arr[i]['salary']}</td>
+      //     <td>${info_arr[i]['city']}</td>
+      //     <td>${info_arr[i]['time']}</td>
+      //     <td>
+      //       <a href="javascript:" data-id="${i + 1}">删除</a>
+      //     </td>
+      //   `
+      //   tbody.appendChild(tr)
+      // }
+
+      // 通过 map + join 方法渲染页面
+      const new_info_arr = info_arr.map(function(ele, i) {
+        return `
+          <tr>
+            <td>${i + 1}</td>
+            <td>${ele['uname']}</td>
+            <td>${ele['age']}</td>
+            <td>${ele['gender']}</td>
+            <td>${ele['salary']}</td>
+            <td>${ele['city']}</td>
+            <td>${ele['time']}</td>
+            <td>
+              <a href="javascript:" data-id="${i + 1}">删除</a>
+            </td>
+          </tr>
+        `
+      })
+      tbody.innerHTML = new_info_arr.join('')
+    }
+  </script>
+
+</body>
+
+</html>

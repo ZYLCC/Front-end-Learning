@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <form action="">
+    <input type="text" name="username">
+    <input type="password" name="pwd">
+    <button>提交</button>
+  </form>
+
+  <a href="#/my">我的</a>
+  <a href="#/friend">关注</a>
+  <a href="#/download">下载</a>
+  <button class="reload">刷新</button><hr>
+
+  <button class="back">后退</button>
+  <button>前进</button>
+
+  <script>
+    // console.log(window.location) === console.log(location)
+
+    /* location 属性： */
+    // 1. href 经常用href 利用js的方法去跳转页面  可读写
+    // location.href = 'http://www.baidu.com'
+
+    // 2. search 获得 ?后的内容  (表单提交后获得数据)
+
+    // 3. hash  获得 #后的内容  (spa页面 点击链接后获得 #/xxx)
+
+    /* location 方法： */
+    const reload = document.querySelector('.reload')
+    reload.addEventListener('click', function () {
+      // f5 刷新页面
+      // location.reload()  参数加上 true 强制刷新
+      // 强制刷新  ctrl+f5
+      location.reload(true)
+    })
+
+
+    /* history 对象 */
+    const back = document.querySelector('.back')
+    const forward = back.nextElementSibling
+    back.addEventListener('click', function () {
+      // 后退一步
+      // history.back()
+      history.go(-1)
+    })
+    forward.addEventListener('click', function () {
+      // 前进一步
+      // history.forward()
+      history.go(1)
+    })
+  </script>
+  </script>
+</body>
+
+</html>
