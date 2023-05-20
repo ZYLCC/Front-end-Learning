@@ -202,22 +202,30 @@
   <script>
     const get_code = document.querySelector('.xtx-form .xtx-form-item .code')
     
-    // 点击获取验证码的事件
-    get_code.addEventListener('click', function(e) {
-      e.
+    
+    get_code.addEventListener('click', getCode)
+
+    // 点击获取验证码的事件函数
+    function getCode() {
+      this.removeEventListener('click', getCode) // 点击后，取消点击事件
+
       let cntdown = 5
       this.classList.add('ing') // 颜色置灰
       this.innerHTML = `${cntdown}秒后重新获取`
-      let timerId = setInterval(function() {
+
+      let timerId = setInterval(function() {  // 5秒倒计时显示
         cntdown--
         get_code.innerHTML = `${cntdown}秒后重新获取`
         if (!cntdown) {
           clearInterval(timerId)
           get_code.innerHTML = `发送验证码`
           get_code.classList.remove('ing')
+          get_code.addEventListener('click', getCode) // 恢复点击事件
         }
       }, 1000)
-    })
+    }
+
+
   </script>
 </body>
 
