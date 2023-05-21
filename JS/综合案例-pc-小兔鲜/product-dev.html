@@ -113,11 +113,11 @@
             </div>
             <div class="small">
               <ul>
-                <li class="active"><img src="./images/1.jpg" alt=""></li>
-                <li><img src="./images/2.jpg" alt=""></li>
-                <li><img src="./images/3.jpg" alt=""></li>
-                <li><img src="./images/4.jpg" alt=""></li>
-                <li><img src="./images/5.jpg" alt=""></li>
+                <li><img class="active" data-id="1" src="./images/1.jpg" alt=""></li>
+                <li><img data-id="2" src="./images/2.jpg" alt=""></li>
+                <li><img data-id="3" src="./images/3.jpg" alt=""></li>
+                <li><img data-id="4" src="./images/4.jpg" alt=""></li>
+                <li><img data-id="5" src="./images/5.jpg" alt=""></li>
               </ul>
             </div>
             <div class="large"></div>
@@ -431,13 +431,17 @@
 
       small.addEventListener('mouseover', function(e) {
         const obj = e.target
-        if (obj === 'IMG') {
-          console.log(1111)
+        if (obj.tagName === 'IMG') {
           this.querySelector('.active').classList.remove('active')
           obj.classList.add('active')
+
+          middle_pic.src = `./images/${obj.dataset['id']}.jpg`
         }
       })
     })();
+    
+
+    
   </script>
 </body>
 
