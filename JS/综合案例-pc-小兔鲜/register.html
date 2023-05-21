@@ -201,7 +201,7 @@
   </div>
   <script>
     const get_code = document.querySelector('.xtx-form .xtx-form-item .code')
-    let flag_code = true
+    
     
     
     // get_code.addEventListener('click', getCode)
@@ -226,6 +226,7 @@
     // }
 
     // 1. 点击 获取验证码 函数
+    let flag_code = true
     get_code.addEventListener('click', function () {
       if (flag_code) {
         flag_code = false
@@ -250,26 +251,101 @@
     // 2. 验证
     // 2.1 验证用户名
     const uname = document.querySelector('[name=username]')
-    let 
+    let uname_flag = false
 
     uname.addEventListener('change', function() {
       const reg = /^[a-zA-Z0-9-_]{6,10}$/
-      verify(this, reg, '输入不合法，请输入6-10位字符')
+      uname_flag = verify(this, reg, '输入不合法，请输入6-10位字符')
     })
 
     // 2.2 验证电话
+    const phone = document.querySelector('[name=phone]')
+    let phone_flag = false
 
+    phone.addEventListener('change', function() {
+      const reg = /^1(3\d|4[01456879]|5[0-35-9]|6[2567]|7[0-8]|8\d|9[0-35-9])\d{8}$/  // 手机号码正则
+      phone_flag = verify(this, reg, '输入不合法，请输入正确的11位手机号')
+    })
+
+    // 2.3 验证短信验证码
+    const code = document.querySelector('[name=code]')
+    let code_flag = false
+
+    code.addEventListener('change', function() {
+      const reg = /^\d{6}$/
+      code_flag = verify(this, reg, '请输入正确的验证码')
+    })
+    
+    // 2.4 验证密码
+    const pwd = document.querySelector('[name=password]')
+    let pwd_flag = false
+
+    pwd.addEventListener('change', function() {
+      const reg = /^[a-zA-Z0-9-_]{6,20}$/
+      pwd_flag = verify(this, reg, '请按要求输入6-20个字符')
+    })
+
+    // 2.5 验证 确认密码
+    const pwd_confirm = document.querySelector('[name=confirm]')
+    let pwd_confirm_flag = false
+
+    pwd_confirm.addEventListener('change', function() {
+      if (this.value === pwd.value) {
+        this.nextElementSibling.innerHTML = ''
+        pwd_confirm_flag = true
+      } else {
+        this.nextElementSibling.innerHTML = '两次输入的密码不一致'
+        pwd_confirm_flag = false
+      }
+    })
 
     // 通用的验证函数
     function verify(obj, reg, msg) {
+      const span_msg = obj.nextElementSibling
       if (reg.test(obj.value)) {
-        obj.nextElementSibling.innerHTML = ''
+        span_msg.innerHTML = ''
         return true
       } else {
-        obj.nextElementSibling.innerHTML = msg
+        span_msg.innerHTML = msg
         return false
       }
     }
+
+    // 点击勾选用户协议
+    const queren = document.querySelector('.xtx-form .xtx-form-item i.iconfont')
+    let queren_flag = false
+
+    queren.addEventListener('click', function() {
+      // if (!queren_flag) {
+      //   queren_flag = true
+      //   this.classList.add('icon-queren2')
+      // } else {
+      //   queren_flag  = false
+      //   this.classList.remove('icon-queren2')
+      // }
+      this.classList.toggle('icon-queren2')
+    })
+
+    // 点击下一步按钮
+    const form = document.querySelector('.xtx-form')
+
+
+    form.addEventListener('submit', function(e) { 
+
+      // if (queren_flag) { // 勾选了阅读用户协议
+      if (queren.classList.contains('icon-queren2')) { // 判断是否有这个类
+        if (uname_flag && pwd_flag && code_flag && phone_flag && pwd_confirm_flag) {
+          this.reset()
+          alert('成功注册')
+        } else {
+          alert('请完善信息或按要求输入信息')
+          e.preventDefault() // 阻止提交
+        }
+      } else {
+        alert('请先阅读并同意《用户服务协议》')
+        e.preventDefault() // 阻止提交
+      }
+    })
   </script>
 </body>
 

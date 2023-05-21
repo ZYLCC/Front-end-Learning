@@ -8,6 +8,7 @@
   <meta name="renderer" content="webkit">
   <link rel="stylesheet" href="./css/common.css">
   <link rel="stylesheet" href="./css/index.css">
+  
 </head>
 
 <body>
@@ -1217,6 +1218,37 @@
   </div>
 
   <script>
+    show_uname()
+    // 显示用户名
+    function show_uname() {
+      const user = document.querySelector('.xtx_navs li:nth-child(1)')
+      const logout = document.querySelector('.xtx_navs li:nth-child(2)')
+
+      if (localStorage.getItem('xtx-uname')) { // 如果本地存储里面有用户名
+        user.innerHTML = `<a href="javascript:;">${localStorage.getItem('xtx-uname')}</a>`
+
+        logout.innerHTML = '<a href="javascript:;">退出登录</a>'
+        logout.children[0].classList.add('logout')
+      } else {
+        logout.innerHTML = '<a href="./register.html">免费注册</a>'
+        user.innerHTML = '<a href="./login.html">请先登录</a>'
+      }
+    }
+
+    // 点击退出登录
+    (function() {
+      const xtx_nav = document.querySelector('.xtx_navs')
+      const user = document.querySelector('.xtx_navs li:nth-child(1) a')
+
+      // 事件委托
+      xtx_nav.addEventListener('click', function(e) {
+        const obj = e.target
+        if (obj.classList.contains('logout')) {
+          localStorage.removeItem('xtx-uname')
+          show_uname()
+        }
+      })
+    })();
     
     // 到达新鲜好物处，显示电梯导航
     (function() {
@@ -1250,7 +1282,7 @@
         range.push(obj_panel.offsetTop, obj_panel.offsetTop + obj_panel.offsetHeight) // 每一个 panel 的 起始点 和 结束点
         panels_range[elevator_a_dataname[cnt++]] = range
       }
-      console.log(panels_range)
+      
 
       // 电梯导航点击事件（事件委托）
       elevator.addEventListener('click', function(e) {

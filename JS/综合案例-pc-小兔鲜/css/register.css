@@ -59,6 +59,14 @@
   font-size: 14px;
 }
 
+.xtx-form .xtx-form-item i.iconfont {
+  color: #cccccc;
+}
+
+.xtx-form .xtx-form-item i.iconfont.icon-queren2 {
+  color: #27BA9B;
+}
+
 .xtx-form .xtx-form-item input {
   width: 300px;
   height: 50px;
