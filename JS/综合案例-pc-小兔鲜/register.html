@@ -201,31 +201,75 @@
   </div>
   <script>
     const get_code = document.querySelector('.xtx-form .xtx-form-item .code')
+    let flag_code = true
     
     
-    get_code.addEventListener('click', getCode)
+    // get_code.addEventListener('click', getCode)
+    // // 点击获取验证码的事件函数
+    // function getCode() {
+    //   this.removeEventListener('click', getCode) // 点击后，取消点击事件
 
-    // 点击获取验证码的事件函数
-    function getCode() {
-      this.removeEventListener('click', getCode) // 点击后，取消点击事件
+    //   let cntdown = 5
+    //   this.classList.add('ing') // 颜色置灰
+    //   this.innerHTML = `${cntdown}秒后重新获取`
 
-      let cntdown = 5
-      this.classList.add('ing') // 颜色置灰
-      this.innerHTML = `${cntdown}秒后重新获取`
+    //   let timerId = setInterval(function() {  // 5秒倒计时显示
+    //     cntdown--
+    //     get_code.innerHTML = `${cntdown}秒后重新获取`
+    //     if (!cntdown) {
+    //       clearInterval(timerId)
+    //       get_code.innerHTML = `发送验证码`
+    //       get_code.classList.remove('ing')
+    //       get_code.addEventListener('click', getCode) // 恢复点击事件，也可以用 flag 变量来判断
+    //     }
+    //   }, 1000)
+    // }
 
-      let timerId = setInterval(function() {  // 5秒倒计时显示
-        cntdown--
-        get_code.innerHTML = `${cntdown}秒后重新获取`
-        if (!cntdown) {
-          clearInterval(timerId)
-          get_code.innerHTML = `发送验证码`
-          get_code.classList.remove('ing')
-          get_code.addEventListener('click', getCode) // 恢复点击事件
-        }
-      }, 1000)
+    // 1. 点击 获取验证码 函数
+    get_code.addEventListener('click', function () {
+      if (flag_code) {
+        flag_code = false
+        let cntdown = 5
+        this.classList.add('ing') // 颜色置灰
+        this.innerHTML = `${cntdown}秒后重新获取`
+
+        let timerId = setInterval(function() {  // 5秒倒计时显示
+          cntdown--
+          get_code.innerHTML = `${cntdown}秒后重新获取`
+          if (!cntdown) {
+            clearInterval(timerId)
+            get_code.innerHTML = `发送验证码`
+            get_code.classList.remove('ing')
+            flag_code = true
+          }
+        }, 1000)
+      }
+    })
+
+
+    // 2. 验证
+    // 2.1 验证用户名
+    const uname = document.querySelector('[name=username]')
+    let 
+
+    uname.addEventListener('change', function() {
+      const reg = /^[a-zA-Z0-9-_]{6,10}$/
+      verify(this, reg, '输入不合法，请输入6-10位字符')
+    })
+
+    // 2.2 验证电话
+
+
+    // 通用的验证函数
+    function verify(obj, reg, msg) {
+      if (reg.test(obj.value)) {
+        obj.nextElementSibling.innerHTML = ''
+        return true
+      } else {
+        obj.nextElementSibling.innerHTML = msg
+        return false
+      }
     }
-
-
   </script>
 </body>
 
