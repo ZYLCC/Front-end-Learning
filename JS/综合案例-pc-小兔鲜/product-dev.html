@@ -424,24 +424,96 @@
       })
     })();
 
-    // 鼠标移入小图就显示大图
+    // 鼠标移入小图就显示大图 + 放大镜效果
     (function() {
-      const middle_pic = document.querySelector('.picture .middle img')
+      const middle = document.querySelector('.picture .middle ')
+      const middle_pic = middle.querySelector('img')
       const small = document.querySelector('.picture .small')
+      const large = document.querySelector('.picture .large')
+      const layer = document.querySelector('.layer')
+      
 
+      // 事件委托
       small.addEventListener('mouseover', function(e) {
         const obj = e.target
         if (obj.tagName === 'IMG') {
           this.querySelector('.active').classList.remove('active')
           obj.classList.add('active')
 
-          middle_pic.src = `./images/${obj.dataset['id']}.jpg`
+          // middle_pic.src = `./images/${obj.dataset['id']}.jpg`
+          middle_pic.src = e.target.src
         }
       })
+
+      // 鼠标移入移出中等图片，显示隐藏大图
+      middle.addEventListener('mouseenter', show)
+      middle.addEventListener('mouseleave', hidden)
+      large.addEventListener('mouseenter', show)
+      large.addEventListener('mouseleave', hidden)
+
+      let timerId = 0
+
+      function show() {
+        // 鼠标进入立马清除定时器
+        clearTimeout(timerId)
+        large.style.backgroundImage = `url(${middle_pic.src})`
+        large.style.display = 'block'
+      }
+
+      function hidden() {
+        layer.style.display = 'none'
+        timerId = setTimeout(function() {
+          large.style.display = 'none'
+        }, 200)
+      }
+
+      middle.addEventListener('mouseenter', function() {
+        layer.style.display = 'block'
+      })
+
+      middle.addEventListener('mousemove', function(e) {
+        // 中盒子距离视口的 left top 距离
+        let middle_left_out = this.getBoundingClientRect()['left']
+        let middle_top_out = this.getBoundingClientRect()['top']
+        // 鼠标距离中盒子left边 top 边的距离
+        let middle_left_inner = e.pageX - middle_left_out
+        let middle_top_inner = e.pageY - middle_top_out
+        // 得到覆盖层的一半
+        const layer_size = layer.clientWidth
+        const middle_size = middle.clientWidth
+        const layer_half = layer_size / 2
+      
+        middle_left_inner = getSize(middle_left_inner) + 'px'
+        middle_top_inner = getSize(middle_top_inner) + 'px'
+        // 黑色覆盖层移动
+        layer.style.left = middle_left_inner
+        layer.style.top = middle_top_inner
+
+        // 得到 大盒子 显示是 黑色覆盖盒子 的 几倍
+        const size_multi = middle_size / layer_size
+        // 得到 黑色覆盖盒子 对于 middle 的 offsetLeft、offsetTop 
+        let layer_offset_left = layer.offsetLeft
+        let layer_offset_top = layer.offsetTop
+
+        // 实时显示黑色覆盖区域对应的大图
+        large.style.backgroundPosition = `left ${-layer_offset_left * size_multi}px top ${-layer_offset_top * size_multi}px`
+        
+      })
+
+      // 让x轴 y轴小于100和大于300的时候不移动对应的轴
+      function getSize(size) {
+        const layer_size = layer.clientWidth
+        const middle_size = middle.clientWidth
+        if (size < layer_size / 2) {
+          size = 100
+        } else if (size > middle_size - layer_size / 2) {
+          size = middle_size - layer_size / 2
+        }
+        return size - layer_size / 2
+      }
     })();
     
-
-    
+   
   </script>
 </body>
 

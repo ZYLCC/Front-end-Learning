@@ -68,7 +68,9 @@
   background-color: #fff;
   display: none;
   background-image: url(../images/1.jpg);
+  background-repeat: no-repeat;
   background-size: 800px 800px;
+  /* background-position: left -100px top -100px; */
 }
 
 .xtx-product-info .left .picture .middle img {
