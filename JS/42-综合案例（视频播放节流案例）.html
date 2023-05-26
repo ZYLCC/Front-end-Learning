@@ -72,19 +72,30 @@
   <script>
     const video = document.querySelector('video')
 
-    video.ontimeupdate = throttle()
+    // 视频播放发生改变时的事件
+    video.ontimeupdate = throttle(videoPlay, 1000)
 
-    // 播放时需要的函数
-    function 
+    // 打开页面时触发事件，从本地存储取出上次视频播放记录的时间
+    video.onloadeddata = () => {
+      video.currentTime = localStorage.getItem('currentTime') || 0
+    }
+
+    // 播放时需要的函数(每秒记录一次当前的播放时间节点，存入本地存储)
+    function videoPlay() {
+      // video.currentTime 可读写
+      localStorage.setItem('currentTime', video.currentTime)
+    }
 
     // 节流函数
     function throttle(fun, delay) {
       let timerId
       return function() {
         if (!timerId) {
-          timerId = setTimeout(fun, delay)
-          // 清空定时器
-          timerId = null
+          timerId = setTimeout(function() {
+            fun()
+            // 清空定时器
+            timerId = null
+          }, delay)
         }
       }
     }
