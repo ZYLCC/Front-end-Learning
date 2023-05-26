@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <style>
+    .box, .box1 {
+      width: 800px;
+      height: 300px;
+      background-color: #ccc;
+      color: #fff;
+      text-align: center;
+      font-size: 100px;
+    }
+  </style>
+</head>
+
+<body>
+  <h3>防抖（鼠标停止移动500ms后数字+1，无论触发多少次，只执行最后一次）：</h3>
+  <div class="box"></div><hr>
+  <h3>节流（鼠标开始移动500ms内数字+1，无论期间触发多少次，只执行最开始触发的那一次）：</h3>
+  <div class="box1"></div>
+
+  <script>
+    const box = document.querySelector('.box')
+    const box1 = document.querySelector('.box1')
+    let cnt = 1
+    let cnt1 = 1
+    box.innerHTML = cnt
+    box1.innerHTML = cnt1
+
+    // 绑定鼠标移动事件（防抖）
+    box.addEventListener('mousemove', debounce(function() {
+      box.innerHTML = cnt++
+    }, 500))
+
+    // 绑定鼠标移动事件（节流）
+    box1.addEventListener('mousemove', throttle(function() {
+      box1.innerHTML = cnt1++
+    }, 500))
+    
+    // 手写防抖函数(核心是利用 setTimeout 实现)   总结：等用户高频事件完了，再进行事件操作
+    // 1. 先声明定时器变量
+    // 2. 每次触发时都要先判断是否有定时器，如果有先清除以前的定时器，如果没有则开启定时器，并存入到定时器变量中
+    // 3. 定时器写函数调用
+    function debounce(fun, wait) {
+      let timerId
+
+      // 返回一个匿名函数，不然页面加载时，上面的 debounce() 就会执行，当鼠标移动后就不执行了 
+      return function() {
+        if (timerId) clearTimeout(timerId)
+        timerId = setTimeout(fun, wait)
+      }
+    }
+
+    // 手写节流函数(核心是利用 setTimeout 实现)    总结：多个操作希望上一次的完成后再进行下一次，或者希望隔一段时间触发一次
+    // 1. 先声明定时器变量
+    // 2. 每次触发时都要先判断是否有定时器，如果有则不开启新的定时器，如果没有则开启，并存入到定时器变量中
+    // 3. 定时器里面调用执行的函数，且定时器里面要把定时器清空
+    function throttle(fun, wait) {
+      let timerId
+
+      return function() {
+        if (!timerId) {
+          timerId = setTimeout(function() {
+          fun()
+          // 清空定时器(执行一次后，清空了才有下次判断执行)
+          timerId = null  // 在 setTimeout 中是无法删除定时器的，因为定时器还在运作，所以使用timerId = null 而不是cLearTimeout(timerId)
+          }, wait)
+        }
+
+      }
+
+    }
+  </script>
+</body>
+
+</html>

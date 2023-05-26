@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>面向对象封装消息提示</title>
+  <style>
+    .model {
+      width: 300px;
+      min-height: 100px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      border-radius: 4px;
+      position: fixed;
+      z-index: 999;
+      left: 50%;
+      top: 50%;
+      transform: translate3d(-50%, -50%, 0);
+      background-color: #fff;
+    }
+
+    .model .header {
+      line-height: 40px;
+      padding: 0 10px;
+      position: relative;
+      font-size: 20px;
+    }
+
+    .model .header i {
+      font-style: normal;
+      color: #999;
+      position: absolute;
+      right: 15px;
+      top: -2px;
+      cursor: pointer;
+    }
+
+    .model .body {
+      text-align: center;
+      padding: 10px;
+    }
+
+    .model .footer {
+      display: flex;
+      justify-content: flex-end;
+      padding: 10px;
+    }
+
+    .model .footer a {
+      padding: 3px 8px;
+      background: #ccc;
+      text-decoration: none;
+      color: #fff;
+      border-radius: 2px;
+      margin-right: 10px;
+      font-size: 14px;
+    }
+
+    .model .footer a.submit {
+      background-color: #369;
+    }
+  </style>
+</head>
+
+<body>
+  <button id="delete">删除</button>
+  <button id="login">登录</button>
+  <button id="add">新增</button>
+
+  <!-- <div class="model">
+    <div class="header">温馨提示 <i>x</i></div>
+    <div class="body">您没有删除权限操作</div>
+  </div> -->
+
+
+  <script>
+    const del_btn = document.querySelector('#delete')
+    const login_btn = document.querySelector('#login')
+    const add_btn = document.querySelector('#add')
+
+    // 创建 model 构造函数
+    function Model(title, msg) {
+      // 构造函数都要用 this
+      // 1. 创建 modelbox div
+      this.modelBox = document.createElement('div')
+      // 2. 添加类名
+      this.modelBox.className = 'model'
+      // 3. 给modelbox添加内容
+      this.modelBox.innerHTML = `
+        <div class="header">${title} <i>x</i></div>
+        <div class="body">${msg}</div>
+      `
+    }
+
+    // 给构造函数 Model 的原型对象创建 open 方法
+    Model.prototype.open = function() { // 不用箭头函数，因为谁调用 this 就指向谁
+      // 显示前先判断页面是否有了 modelBox
+      const box = document.querySelector('.model')
+      box && box.remove() // 有就先移除
+      // 再添加到页面
+      document.body.append(this.modelBox)
+
+      // 调用 open 方法时，绑定点击关闭事件
+      this.modelBox.querySelector('i').addEventListener('click', () => {
+        // 这里使用箭头函数，是因为 this 不指向 i 标签，指向上一级调用 open 方法的实例对象
+        // this.modelBox.remove() 
+        this.close()
+      })
+    }
+
+    // 给构造函数 Model 的原型对象创建 close 方法
+    Model.prototype.close = function() {
+      this.modelBox.remove()
+    }
+
+    // 按钮绑定事件，显示 modelbox
+    del_btn.addEventListener('click', () => {
+      const modelBox = new Model('温馨提示', '您没有删除权限')
+      modelBox.open()
+    })
+
+    login_btn.addEventListener('click', () => {
+      const modelBox = new Model('友情提示', '您没有注册')
+      modelBox.open()
+    })
+
+    add_btn.addEventListener('click', () => {
+      const modelBox = new Model('强烈提示', '您没有新增权限')
+      modelBox.open()
+    })
+  </script>
+</body>
+
+</html>
