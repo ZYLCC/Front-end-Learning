@@ -56,11 +56,17 @@ book_tbody.addEventListener('click', function(e) {
     axios({
       url: `http://hmajax.itheima.net/api/books/${book_id}`
     }).then(res => {
-      // console.log(res)
-      const {author, bookname, publisher} = res.data.data
-      document.querySelector('.edit-form .bookname').value = bookname
-      document.querySelector('.edit-form .author').value = author
-      document.querySelector('.edit-form .publisher').value = publisher
+      // const {author, bookname, publisher} = res.data.data
+      // document.querySelector('.edit-form .bookname').value = bookname
+      // document.querySelector('.edit-form .author').value = author
+      // document.querySelector('.edit-form .publisher').value = publisher
+
+      // 数据对象“属性”和标签“类名”一致，遍历数据对象，使用属性去获取对应的标签，快速赋值
+      const book_obj = res.data.data
+      const keys = Object.keys(book_obj)
+      keys.forEach(key => {
+        document.querySelector(`.edit-form .${key}`).value = book_obj[key]
+      })
     })
 
     edit_modal.show() // 显示弹框
@@ -68,13 +74,26 @@ book_tbody.addEventListener('click', function(e) {
 })
 // 弹框确定修改按钮绑定点击事件
 edit_btn.addEventListener('click', function(e) {
+  // 获取修改后的表单
+  const edit_form = document.querySelector('.edit-form')
+  const {id, author, bookname, publisher} = serialize(edit_form, { hash: true, empty: true })
   axios({
-    
+    url: `http://hmajax.itheima.net/api/books/${id}`,
+    method: 'put',
+    data: {
+      author,
+      bookname,
+      publisher,
+      creator: 'cc'
+    }
+  }).then(() => {
+    bookListRender()
+    edit_modal.hide() // 隐藏弹框
   })
-  edit_modal.hide() // 隐藏弹框
 })
 
-// 渲染图书列表函数
+
+/* 渲染图书列表函数 */
 function bookListRender() {
   axios({  // 获取图书列表
     url: 'http://hmajax.itheima.net/api/books',
