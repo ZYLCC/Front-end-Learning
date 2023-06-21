@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Promise链式调用_解决回调地狱</title>
+</head>
+
+<body>
+  <form>
+    <span>省份：</span>
+    <select class="province">
+      <option></option>
+    </select>
+    <span>城市：</span>
+    <select class="city">
+      <option></option>
+    </select>
+    <span>地区：</span>
+    <select class="area">
+      <option></option>
+    </select>
+  </form>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script>
+    /**
+     * 目标：把回调函数嵌套代码，改成Promise链式调用结构
+     * 需求：获取默认第一个省，第一个市，第一个地区并展示在下拉菜单中
+     */
+    
+    const province_box = document.querySelector('.province')
+    const city_box = document.querySelector('.city')
+    const area_box = document.querySelector('.area')
+
+    let pname = null
+    getProvince(pname)
+    province_box.addEventListener('change', function(){
+      getProvince(this.value)
+    })
+    city_box.addEventListener('change', function() {
+      axios({
+        url: 'http://hmajax.itheima.net/api/area',
+        params: {
+          pname: province_box.value,
+          cname: this.value
+        }
+      }).then(res => {
+        const area_str = res.data.list.map(item => {
+          return `<option>${item}</option>`
+        })
+        area_box.innerHTML = area_str
+      })
+    })
+
+
+    function getProvince(pname) {
+      // 1. 得到获取省份列表的promise对象  
+      axios({
+        url: 'http://hmajax.itheima.net/api/province'
+      }).then(res => {
+        // console.log(res)
+        if (!pname) {
+          pname = pname || res.data.list[0]
+          const province_str = res.data.list.map(item => {
+            return `<option>${item}</option>`
+          }).join('')
+          province_box.innerHTML = province_str
+        }
+          // 2. 得到获取城市列表的promise对象
+        return axios({
+          url: 'http://hmajax.itheima.net/api/city',
+          params: {
+            pname
+          }
+        })
+      }).then(res => {
+        // console.log(res)
+        const cname = res.data.list[0]
+        const city_str = res.data.list.map(item => {
+          return `<option>${item}</option>`
+        })
+        city_box.innerHTML = city_str
+        // 3. 得到获取地区列表的promise对象
+        return axios({
+          url: 'http://hmajax.itheima.net/api/area',
+          params: {
+            pname,
+            cname
+          }
+        }).then(res => {
+          // console.log(res)
+          const area_str = res.data.list.map(item => {
+            return `<option>${item}</option>`
+          })
+          area_box.innerHTML = area_str
+        })
+      })
+    }
+
+  
+  </script>
+</body>
+
+</html>
