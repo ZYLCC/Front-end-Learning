@@ -1,0 +1,46 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .active {
+      background-color: skyblue;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="app">
+    <ul>
+      <!-- 动态绑定 active -->
+      <li :class="{ active: index === currentIndex }" 
+      @click="liClick(index)"
+      v-for="(item, index) in message">{{ item }}</li>
+    </ul>
+  </div>
+  
+  <script src="E:\frontend\Front-end-Learning\Vue\01_Learn_Vue_Basic\lib\vue.js"></script>
+  <script>
+    // 1.创建app
+    const app = Vue.createApp({
+      // data: option api
+      data() {
+        return {
+          message: ['aaa', 'bbb', 'ccc', 'ddd'],
+          currentIndex: -1
+        }
+      },
+      methods: {
+        liClick(index) {
+          this.currentIndex = index
+        }
+      }
+    })
+
+    // 2.挂载app
+    app.mount('#app')
+  </script>
+</body>
+</html>

@@ -1,6 +1,6 @@
 {
     "files.associations": {
-        "*.vue": "html"
+        "*.vue": "vue"
     },
     "emmet.triggerExpansionOnTab": true,
     "emmet.includeLanguages": {

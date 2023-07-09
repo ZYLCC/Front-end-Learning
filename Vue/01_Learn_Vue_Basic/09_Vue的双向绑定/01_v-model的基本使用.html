@@ -1,0 +1,44 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+
+  <div id="app">
+    <!-- <input type="text" :value="message" @input="inputChange"> -->
+    用户名：<input type="text" v-model="username">
+    密码：<input type="password" v-model="password">
+    <button @click="loginClick">登录</button>
+    <h2>{{ message }}</h2>
+  </div>
+  
+  <script src="Vue\01_Learn_Vue_Basic\lib\vue.js"></script>
+  <script>
+    // 1.创建app
+    const app = Vue.createApp({
+      // data: option api
+      data() {
+        return {
+          message: 'hello vue',
+          username: '',
+          password: ''
+        }
+      },
+      methods: {
+        inputChange(e) {
+          this.message = e.target.value
+        },
+        loginClick() {
+          this.message = '用户名：' + this.username + ' ' + '密码：' + this.password
+        }
+      }
+    })
+
+    // 2.挂载app
+    app.mount('#app')
+  </script>
+</body>
+</html>

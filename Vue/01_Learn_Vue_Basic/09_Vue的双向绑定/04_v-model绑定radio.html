@@ -1,0 +1,36 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+
+  <div id="app">
+    <div class="gender">
+      <!-- 使用了 v-model 可以不用设置 name 属性来互斥 -->
+      <label for="male"><input type="radio" v-model="gender" id="male" value="male">♂ </label>
+      <label for="female"><input type="radio" v-model="gender" id="female" value="female">♀ </label>
+      <h2>性别：{{gender}}</h2>
+    </div>
+  </div>
+  
+  <script src="E:\frontend\Front-end-Learning\Vue\01_Learn_Vue_Basic\lib\vue.js"></script>
+  <script>
+    // 1.创建app
+    const app = Vue.createApp({
+      // data: option api
+      data() {
+        return {
+          message: 'hello vue',
+          gender: 'female'
+        }
+      },
+    })
+
+    // 2.挂载app
+    app.mount('#app')
+  </script>
+</body>
+</html>
