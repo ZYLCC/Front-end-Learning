@@ -7,6 +7,8 @@ const bar: any = (arg: number): number => {
   return 123
 }
 
-function delayExecFn(fn) {
-
+function delayExecFn(fn: any) {
+  
 }
+
+export {}
