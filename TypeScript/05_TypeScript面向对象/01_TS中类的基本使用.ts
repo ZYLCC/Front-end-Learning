@@ -1,10 +1,10 @@
 class Person {
   // 成员属性: 声明成员属性
-  name: string
+  name!: string   // 断言，不用担心为空
   age: number
 
   constructor(name: string, age: number) {
-    this.name = name
+    // this.name = name
     this.age = age
   }
 
@@ -24,4 +24,12 @@ const p2 = new Person("kobe", 30)
 console.log(p1.name, p2.age)
 
 export {}
+
+
+
+
+
+
+
+
 
