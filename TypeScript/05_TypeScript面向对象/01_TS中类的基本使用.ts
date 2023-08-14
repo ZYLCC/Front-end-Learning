@@ -1,6 +1,6 @@
 class Person {
   // 成员属性: 声明成员属性
-  name!: string   // 断言，不用担心为空
+  name!: string   // 非空断言，不用担心为空
   age: number
 
   constructor(name: string, age: number) {
