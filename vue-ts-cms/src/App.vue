@@ -1,9 +1,7 @@
 <template>
-  <div>
-    <h2>App</h2>
-    <router-link to="/main">main</router-link>
-    <router-link to="/login">login</router-link>
+  <div class="app">
     <router-view></router-view>
+
   </div>
 </template>
 
@@ -16,4 +14,10 @@
   console.log(ikun)
 </script>
 
-<style scoped></style>
+<style scoped>
+  .app {
+    width: 100vw;
+    height: 100vh;
+    /* background-color: skyblue; */
+  }
+</style>

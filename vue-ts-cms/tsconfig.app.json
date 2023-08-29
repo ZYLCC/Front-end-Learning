@@ -1,6 +1,6 @@
 {
   "extends": "@vue/tsconfig/tsconfig.dom.json",
-  "include": ["env.d.ts", "src/**/*"],
+  "include": ["env.d.ts", "src/**/*", "auto-imports.d.ts", "components.d.ts"],
   "exclude": ["src/**/__tests__/*"],
   "compilerOptions": {
     "moduleResolution": "Node",
@@ -9,6 +9,7 @@
     "paths": {
       "@/*": ["./src/*"]
     },
-    "noImplicitAny": false
+    "noImplicitAny": false,
+    // "types": ["element-plus/global"], // 全局引入的配置
   }
 }
