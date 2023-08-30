@@ -129,6 +129,7 @@
         }
       }).then(res => {
         showAlert(res.data.message, true)
+        console.log(res.data)
       }).catch(err => {
         showAlert(err.response.data.message, false)
       })

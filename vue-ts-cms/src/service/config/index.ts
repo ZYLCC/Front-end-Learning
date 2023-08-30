@@ -11,9 +11,11 @@
  */
 let BASE_URL = ''
 if (import.meta.env.MODE === 'production') {
-  BASE_URL = 'http://codercba.dev:8000'
+  BASE_URL = 'http://coderwhy.org/prod'
 } else {
-  BASE_URL = 'http://codercba.com:8000'
+  // BASE_URL = 'http://hmajax.itheima.net/api'
+  BASE_URL = 'http://pcapi-xiaotuxian-front-devtest.itheima.net'
+
 }
 
 // 3. 通过创建 .env 文件直接创建变量

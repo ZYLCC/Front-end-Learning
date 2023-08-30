@@ -47,11 +47,11 @@
 
   const isRememberPwd = ref(false)
   const activeName = ref('account')
-  const accountRef = ref<any>()
+  const accountRef = ref<InstanceType<typeof PaneAccount>>()
 
   function handleLoginAction() {
     if (activeName.value === 'account') {
-      accountRef.value.loginAction()
+      accountRef.value?.loginAction()
     } else {
       console.log('手机登录')
 
