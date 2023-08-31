@@ -11,7 +11,7 @@ class Cache {
   }
 
   setCache(key: string, value: any) {
-    if (value) {
+    if (typeof(value) !== 'undefined' && value !== null) {  // 判断是否有值
       this.storage.setItem(key, JSON.stringify(value))
     }
   }

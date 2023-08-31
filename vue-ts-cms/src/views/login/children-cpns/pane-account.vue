@@ -25,10 +25,14 @@
   import useLoginStore from '@/store/login/login'
   // import { ElMessage } from 'element-plus'
   import type { IAccount } from '@/types'
+  import { localCache } from '@/utils/cache'
+
+  const CACHE_ACCOUNT = 'account'
+  const CACHE_PWD = 'password'
 
   const accounts: IAccount = reactive({
-    account: '',
-    password: ''
+    account: localCache.getCache(CACHE_ACCOUNT) ?? '',
+    password: localCache.getCache(CACHE_PWD) ?? ''
   })
 
   const rules: FormRules = {
@@ -45,22 +49,28 @@
   // 执行账号的登录逻辑
   const formRef = ref<InstanceType<typeof ElForm>>()
   const loginStore = useLoginStore()
-  function loginAction() {
+  function loginAction(isRememberPwd: boolean) {
     formRef.value?.validate((valid) => {
       if (valid) {
         // 1. 获取用户名和密码
         const account = accounts.account
         const password = accounts.password
+
         // 2. 向服务器发送网络请求（携带用户名和密码）
-        loginStore.loginAccountAction({account, password})
-
-        ElMessage({
-          message: '登录成功~',
-          type: 'success',
+        loginStore.loginAccountAction({account, password}).then(() => {
+          // 3. 是否记住密码
+          if (isRememberPwd) {
+            localCache.setCache(CACHE_ACCOUNT, account)
+            localCache.setCache(CACHE_PWD, password)
+          } else {
+            localCache.removeCache(CACHE_ACCOUNT)
+            localCache.removeCache(CACHE_PWD)
+          }
+          ElMessage({
+            message: '登录成功~',
+            type: 'success',
+          })
         })
-
-
-
       } else {
         ElMessage.error('验证失败，请重新输入~')
       }
@@ -73,7 +83,5 @@
 </script>
 
 <style scoped lang="less">
-  .pane-account {
 
-  }
 </style>

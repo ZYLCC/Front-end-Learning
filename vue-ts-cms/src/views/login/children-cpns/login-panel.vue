@@ -41,20 +41,26 @@
 </template>
 
 <script setup lang="ts">
-  import { ref } from 'vue'
+  import { ref, watch } from 'vue'
   import PaneAccount from './pane-account.vue'
   import PanePhone from './pane-phone.vue'
+  import { localCache } from '@/utils/cache'
 
-  const isRememberPwd = ref(false)
+  const IS_REM_PWD = 'isRemPwd'
+  const isRememberPwd = ref<boolean>(localCache.getCache(IS_REM_PWD) ?? false)
+  // 实时记录是否勾选记住密码
+  watch(isRememberPwd, (newValue) => {
+    localCache.setCache(IS_REM_PWD, newValue)
+  })
+
   const activeName = ref('account')
   const accountRef = ref<InstanceType<typeof PaneAccount>>()
 
   function handleLoginAction() {
     if (activeName.value === 'account') {
-      accountRef.value?.loginAction()
+      accountRef.value?.loginAction(isRememberPwd.value)
     } else {
       console.log('手机登录')
-
     }
   }
 </script>
