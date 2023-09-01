@@ -1,6 +1,6 @@
 <template>
-  <div class="main-container">
-    <h2>main-container</h2>
+  <div class="role">
+    <h2>role</h2>
   </div>
 </template>
 
@@ -9,7 +9,7 @@
 </script>
 
 <style scoped lang="less">
-  .main-container {
+  .role {
 
   }
 </style>

@@ -7,8 +7,8 @@
       status-icon
       ref="formRef"
     >
-      <el-form-item label="账号" prop="account">
-        <el-input v-model="accounts.account"/>
+      <el-form-item label="账号" prop="name">
+        <el-input v-model="accounts.name"/>
       </el-form-item>
       <el-form-item label="密码" prop="password">
         <el-input v-model="accounts.password" show-password/>
@@ -27,16 +27,16 @@
   import type { IAccount } from '@/types'
   import { localCache } from '@/utils/cache'
 
-  const CACHE_ACCOUNT = 'account'
+  const CACHE_ACCOUNT = 'name'
   const CACHE_PWD = 'password'
 
   const accounts: IAccount = reactive({
-    account: localCache.getCache(CACHE_ACCOUNT) ?? '',
+    name: localCache.getCache(CACHE_ACCOUNT) ?? '',
     password: localCache.getCache(CACHE_PWD) ?? ''
   })
 
   const rules: FormRules = {
-    account: [
+    name: [
       {required: true, message: '请输入账号~', trigger: 'blur'},
       {min: 6, max: 20, message: '用户名必须是6~20位', trigger: 'blur'}
     ],
@@ -53,14 +53,14 @@
     formRef.value?.validate((valid) => {
       if (valid) {
         // 1. 获取用户名和密码
-        const account = accounts.account
+        const name = accounts.name
         const password = accounts.password
 
         // 2. 向服务器发送网络请求（携带用户名和密码）
-        loginStore.loginAccountAction({account, password}).then(() => {
+        loginStore.loginAccountAction({name, password}).then(() => {
           // 3. 是否记住密码
           if (isRememberPwd) {
-            localCache.setCache(CACHE_ACCOUNT, account)
+            localCache.setCache(CACHE_ACCOUNT, name)
             localCache.setCache(CACHE_PWD, password)
           } else {
             localCache.removeCache(CACHE_ACCOUNT)

@@ -41,14 +41,14 @@ class HYRequest {
     )
 
     // 针对特定的hyRequest实例添加拦截器
-    // this.instance.interceptors.request.use(
-    //   config.interceptors?.requestSuccessFn,
-    //   config.interceptors?.requestFailureFn
-    // )
-    // this.instance.interceptors.response.use(
-    //   config.interceptors?.responseSuccessFn,
-    //   config.interceptors?.responseFailureFn
-    // )
+    this.instance.interceptors.request.use(
+      config.interceptors?.requestSuccessFn,
+      config.interceptors?.requestFailureFn
+    )
+    this.instance.interceptors.response.use(
+      config.interceptors?.responseSuccessFn,
+      config.interceptors?.responseFailureFn
+    )
   }
 
   // 封装网络请求的方法
@@ -64,7 +64,7 @@ class HYRequest {
       this.instance
         .request<any, T>(config)
         .then((res) => {
-          // 单词响应的成功拦截处理
+          // 单次响应的成功拦截处理
           if (config.interceptors?.responseSuccessFn) {
             res = config.interceptors.responseSuccessFn(res)
           }

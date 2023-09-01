@@ -4,7 +4,7 @@
     <div class="tabs">
       <el-tabs type="border-card" stretch v-model="activeName">
         <!-- 账号登录 -->
-        <el-tab-pane name="account">
+        <el-tab-pane name="name">
           <template #label>
             <div class="label">
               <el-icon><UserFilled /></el-icon>
@@ -53,11 +53,11 @@
     localCache.setCache(IS_REM_PWD, newValue)
   })
 
-  const activeName = ref('account')
+  const activeName = ref('name')
   const accountRef = ref<InstanceType<typeof PaneAccount>>()
 
   function handleLoginAction() {
-    if (activeName.value === 'account') {
+    if (activeName.value === 'name') {
       accountRef.value?.loginAction(isRememberPwd.value)
     } else {
       console.log('手机登录')

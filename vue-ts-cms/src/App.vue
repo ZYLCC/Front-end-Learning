@@ -6,12 +6,7 @@
 </template>
 
 <script setup lang="ts">
-  interface IKun {
-    name: string
-  }
 
-  const ikun: IKun = { name: 'ikun' }
-  console.log(ikun)
 </script>
 
 <style scoped>

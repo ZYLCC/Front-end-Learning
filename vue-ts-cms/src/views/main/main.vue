@@ -1,15 +1,15 @@
 <template>
   <div class="main">
     <el-container>
-      <el-aside width="210px">
-        <main-menu></main-menu>
+      <el-aside :width="isFold ? '60px' : '210px'">
+        <main-menu :is-fold="isFold"></main-menu>
       </el-aside>
       <el-container>
         <el-header height="50px">
-          <main-header></main-header>
+          <main-header @fold-change="handleFoldChange"></main-header>
         </el-header>
         <el-main>
-          <main-container></main-container>
+          <router-view></router-view>
         </el-main>
       </el-container>
     </el-container>
@@ -19,7 +19,7 @@
 <script setup lang="ts">
   import mainMenu from '@/components/main-menu/main-menu.vue'
   import mainHeader from '@/components/main-header/main-header.vue'
-  import mainContainer from '@/components/main-container/main-container.vue';
+  import { ref } from 'vue';
   // import router from '@/router'
   // import {localCache} from '../../utils/cache'
   // import { LOGIN_TOKEN } from '@/global/constants';
@@ -30,22 +30,40 @@
   //   // 2. 回到 login 页面
   //   router.push('/login')
   // }
+
+  const isFold = ref(false)
+  function handleFoldChange(flag: boolean) {
+    isFold.value = flag
+  }
 </script>
 
 <style scoped lang="less">
   .main {
-    color: red;
     height: 100%;
-
     .el-container {
-      height: 100%;
+        height: 100%;
+      }
+
+
+    .el-aside {
+      overflow-x: hidden;
+      overflow-y: hidden;
+      line-height: 200px;
+      text-align: left;
+      cursor: pointer;
+      background-color: #001529;
+      scrollbar-width: none; /* firefox */
+      -ms-overflow-style: none; /* IE 10+ */
+
+      transition: width 0.5s linear;
+
+      &::-webkit-scrollbar {
+        display: none;
+      }
     }
 
-    .el-header {
-      background-color: orange;
-    }
-    .el-main {
-      background-color: skyblue;
-    }
+  .el-main {
+    background-color: #f0f2f5;
   }
+}
 </style>

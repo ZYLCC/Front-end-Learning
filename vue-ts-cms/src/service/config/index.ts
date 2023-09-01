@@ -14,7 +14,7 @@ if (import.meta.env.MODE === 'production') {
   BASE_URL = 'http://coderwhy.org/prod'
 } else {
   // BASE_URL = 'http://hmajax.itheima.net/api'
-  BASE_URL = 'http://pcapi-xiaotuxian-front-devtest.itheima.net'
+  BASE_URL = '/api'
 
 }
 
