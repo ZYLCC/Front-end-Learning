@@ -1,6 +1,7 @@
 import { accountLoginRequest, getUserInfoById, getUserMenusById } from "@/service/login/login"
 import { localCache } from "@/utils/cache"
 import { defineStore } from "pinia"
+import { mapMenusToRoutes } from '@/utils/map-menus'
 import router from "@/router"
 import { LOGIN_TOKEN } from "@/global/constants"
 
@@ -13,9 +14,9 @@ interface ILoginState {
 const useLoginStore = defineStore('login', {
   // 给 state 指定类型
   state: (): ILoginState => ({
-    token: localCache.getCache(LOGIN_TOKEN) ?? '',
-    userInfo: localCache.getCache('userInfo') ?? {},
-    userMenus: localCache.getCache('userMenus') ?? []
+    token: '',
+    userInfo: {},
+    userMenus: []
   }),
 
   actions: {
@@ -37,15 +38,33 @@ const useLoginStore = defineStore('login', {
 
       // 3. 根据角色请求用户权限(菜单menus)
       const userMenusRes = await getUserMenusById(this.userInfo.role.id)
-
       this.userMenus = userMenusRes.data
 
       // 4. 进行本地缓存
       localCache.setCache('userInfo', this.userInfo)
       localCache.setCache('userMenus', this.userMenus)
 
+      // 重要：动态添加路由
+      const routes = mapMenusToRoutes(this.userMenus)
+      routes.forEach((route) => router.addRoute('main', route))
+
       // 5. 页面跳转（main页面）
       router.push('/main')
+    },
+
+    lodaLocalCacheAction() {
+      const token = localCache.getCache(LOGIN_TOKEN)
+      const userInfo = localCache.getCache('userInfo')
+      const userMenus = localCache.getCache('userMenus')
+      if (token && userInfo && userMenus) {  // 证明用户已登录
+        this.token = token
+        this.userInfo = userInfo
+        this.userMenus = userMenus
+
+        // 动态添加路由
+        const routes = mapMenusToRoutes(this.userMenus)
+        routes.forEach((route) => router.addRoute('main', route))
+      }
     }
   }
 })

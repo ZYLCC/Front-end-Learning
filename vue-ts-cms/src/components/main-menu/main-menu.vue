@@ -10,7 +10,7 @@
       <!-- 遍历菜单 -->
       <el-menu
         :collapse="isFold"
-        default-active="3"
+        :default-active="activeDefault"
         text-color="#b7bdc3"
         active-text-color="#fff"
         background-color="#001529">
@@ -38,6 +38,9 @@
 <script setup lang="ts">
   import router from '@/router'
   import useLoginStore from '@/store/login/login'
+  import { ref } from 'vue'
+  import { useRoute } from 'vue-router'
+  import { mapPathToMenu } from '@/utils/map-menus'
 
   defineProps({
     isFold: {
@@ -56,6 +59,11 @@
     // console.log(item)
     router.push(item.url)
   }
+
+  // 3. Elmenu 默认选中页面对应菜单
+  const route = useRoute()
+  const pathMenu = mapPathToMenu(route.path, userMenus)
+  const activeDefault = ref(pathMenu.id + '')
 </script>
 
 <style scoped lang="less">
