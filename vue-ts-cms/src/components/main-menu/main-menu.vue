@@ -38,7 +38,7 @@
 <script setup lang="ts">
   import router from '@/router'
   import useLoginStore from '@/store/login/login'
-  import { ref } from 'vue'
+  import { ref, computed } from 'vue'
   import { useRoute } from 'vue-router'
   import { mapPathToMenu } from '@/utils/map-menus'
 
@@ -62,8 +62,11 @@
 
   // 3. Elmenu 默认选中页面对应菜单
   const route = useRoute()
-  const pathMenu = mapPathToMenu(route.path, userMenus)
-  const activeDefault = ref(pathMenu.id + '')
+
+  const activeDefault = computed(() => {
+    const pathMenu = mapPathToMenu(route.path, userMenus)
+    return pathMenu.id + ''
+  })
 </script>
 
 <style scoped lang="less">

@@ -9,13 +9,18 @@
 </template>
 
 <script setup lang="ts">
+  import { computed } from 'vue'
   import useLoginStore from '@/store/login/login'
   import { mapPathToBreadcrumbs } from '@/utils/map-menus'
   import { useRoute } from 'vue-router'
 
+
   const route = useRoute()
   const userMenus = useLoginStore().userMenus
-  const breadcrumbs = mapPathToBreadcrumbs(route.path, userMenus)
+  // 依赖的值发生改变后，会重新获取
+  const breadcrumbs = computed(() => {
+    return mapPathToBreadcrumbs(route.path, userMenus)
+  })
 
 </script>
 

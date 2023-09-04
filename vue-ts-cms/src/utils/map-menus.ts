@@ -25,7 +25,15 @@ export function mapMenusToRoutes(userMenus: any[]) {
   for (const menu of userMenus) {
     for (const submenu of menu.children) {
       const route = localRoutes.find((item) => item.path === submenu.url)
-      if (route) routes.push(route)  // 类型缩小
+      if (route) { // 类型缩小
+        // 给route的顶层菜单增加重定向功能(但是只需要添加一次即可)
+        if (!routes.find(item => item.path === menu.url)) {
+          routes.push({ path: menu.url, redirect: route.path })
+        }
+
+        // 二级菜单对应的路由
+        routes.push(route)
+      }
       // 记录第一个被匹配到的菜单
       if (!firstMenu && route) firstMenu = submenu
     }
@@ -64,7 +72,9 @@ export function mapPathToBreadcrumbs(path: string, userMenus: any[]) {
   for (const menu of userMenus) {
     for (const submenu of menu.children) {
       if (submenu.url === path) {
+        // 一级
         breadCrumbs.push({name: menu.name, path: menu.url})
+        // 二级
         breadCrumbs.push({name: submenu.name, path: submenu.url})
       }
     }
