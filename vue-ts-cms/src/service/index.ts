@@ -13,7 +13,7 @@ const hyRequest = new HYRequest({
       const token = localCache.getCache(LOGIN_TOKEN)
 
       if (config.headers && token) {
-        config.headers.Authorization = token
+        config.headers.Authorization = 'Bearer ' + token
       }
       return config
     }

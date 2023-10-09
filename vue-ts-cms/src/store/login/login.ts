@@ -1,14 +1,16 @@
 import { accountLoginRequest, getUserInfoById, getUserMenusById } from "@/service/login/login"
 import { localCache } from "@/utils/cache"
 import { defineStore } from "pinia"
-import { mapMenusToRoutes } from '@/utils/map-menus'
+import { mapMenusListToPermissions, mapMenusToRoutes } from '@/utils/map-menus'
 import router from "@/router"
 import { LOGIN_TOKEN } from "@/global/constants"
+import useMainStore from "../main/main"
 
 interface ILoginState {
   token: string
   userInfo: any
   userMenus: any
+  permissions: string[]
 }
 
 const useLoginStore = defineStore('login', {
@@ -16,7 +18,8 @@ const useLoginStore = defineStore('login', {
   state: (): ILoginState => ({
     token: '',
     userInfo: {},
-    userMenus: []
+    userMenus: [],
+    permissions: []
   }),
 
   actions: {
@@ -44,6 +47,14 @@ const useLoginStore = defineStore('login', {
       localCache.setCache('userInfo', this.userInfo)
       localCache.setCache('userMenus', this.userMenus)
 
+      // 请求 roles departments 的数据
+      const mainStore = useMainStore()
+      mainStore.fetchEntireDataAction()
+
+      // 重要：获取登录用户的所有按钮的权限
+      const permissions = mapMenusListToPermissions(this.userMenus)
+      this.permissions = permissions
+
       // 重要：动态添加路由
       const routes = mapMenusToRoutes(this.userMenus)
       routes.forEach((route) => router.addRoute('main', route))
@@ -53,6 +64,7 @@ const useLoginStore = defineStore('login', {
     },
 
     lodaLocalCacheAction() {
+      // 用户进行刷新默认加载数据
       const token = localCache.getCache(LOGIN_TOKEN)
       const userInfo = localCache.getCache('userInfo')
       const userMenus = localCache.getCache('userMenus')
@@ -60,6 +72,14 @@ const useLoginStore = defineStore('login', {
         this.token = token
         this.userInfo = userInfo
         this.userMenus = userMenus
+
+        // 请求 roles departments 的数据
+        const mainStore = useMainStore()
+        mainStore.fetchEntireDataAction()
+
+        // 获取按钮权限
+        const permissions = mapMenusListToPermissions(this.userMenus)
+        this.permissions = permissions
 
         // 动态添加路由
         const routes = mapMenusToRoutes(this.userMenus)

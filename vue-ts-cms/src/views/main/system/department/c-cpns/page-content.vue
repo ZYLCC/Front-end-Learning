@@ -2,24 +2,16 @@
   <div class="content">
     <div class="header">
       <h2 class="title">用户列表</h2>
-      <el-button type="primary" @click="handleNewUserClick">新建用户</el-button>
+      <el-button type="primary" @click="handleNewPageClick">新建部门</el-button>
     </div>
 
     <div class="table">
-      <el-table :data="usersList" border style="width: 100%">
+      <el-table :data="pageList" border style="width: 100%">
         <el-table-column align="center" type="selection" width="42px" />
         <el-table-column align="center" type="index" label="序号" width="60px" />
-        <el-table-column align="center" prop="name" label="用户名" width="200px" />
-        <el-table-column align="center" prop="realname" label="真实姓名" width="200px" />
-        <el-table-column align="center" prop="cellphone" label="手机号码" width="200px" />
-        <el-table-column align="center" prop="enable" label="状态" width="80px">
-          <!-- 作用域插槽 -->
-          <template #default="scope">
-            <el-button size="small" plain :type="scope.row.enable ? 'primary' : 'danger'">
-              {{ scope.row.enable ? '启用' : '禁用' }}
-            </el-button>
-          </template>
-        </el-table-column>
+        <el-table-column align="center" prop="name" label="部门名称" width="200px" />
+        <el-table-column align="center" prop="leader" label="部门领导" width="200px" />
+        <el-table-column align="center" prop="parentId" label="上级部门" width="200px" />
         <el-table-column align="center" prop="createAt" label="创建时间">
           <template #default="scope">
             {{ formatUTC(scope.row.createAt) }}
@@ -60,7 +52,7 @@
       v-model:page-size="pageSize"
       :page-sizes="[10, 20, 30]"
       layout="total, sizes, prev, pager, next, jumper"
-      :total="usersTotalCount"
+      :total="pageTotalCount"
       @size-change="handleSizeChange"
       @current-change="handleCurrentChange"
     />
@@ -70,7 +62,7 @@
 
 <script setup lang="ts">
   import { storeToRefs } from 'pinia'
-  import userSystemStore from '@/store/main/system/system'
+  import useSystemStore from '@/store/main/system/system'
   import { formatUTC } from '@/utils/format'
   import { ref } from 'vue'
 
@@ -81,23 +73,24 @@
   const pageSize = ref(10)
 
   // 发起 action， 请求 usersList 的数据
-  const systemStore = userSystemStore()
-  fetchUsersListData()
+  const systemStore = useSystemStore()
+  fetchPageListData()
 
 
-  // 获取 usersList 数据， 进行展示
-  const { usersList, usersTotalCount } = storeToRefs(systemStore)
+  // 获取 pageList 数据， 进行展示
+  const { pageList, pageTotalCount } = storeToRefs(systemStore)
+
 
   // 页码相关的逻辑
   function handleSizeChange() {
-    fetchUsersListData()
+    fetchPageListData()
   }
   function handleCurrentChange() {
-    fetchUsersListData()
+    fetchPageListData()
   }
 
-  // 获取用户列表
-  function fetchUsersListData(formData: any = {}) {
+  // 获取page列表
+  function fetchPageListData(formData: any = {}) {
     // 1. 获取 offset / size
     const size = pageSize.value
     const offset = (currentPage.value - 1) * size
@@ -105,21 +98,23 @@
 
     // 发起网络请求
     const queryInfo = { ...pageInfo, ...formData }
-    systemStore.postUsersListAction(queryInfo)
+    systemStore.postPageListAction('department', queryInfo)
   }
 
   // 删除 编辑 新建操作
   function handleDelBtnClick(id: number) {
-    systemStore.delUserByIdAction(id)
+    console.log(id);
+
+    systemStore.delPageByIdAction('department', id)
   }
   function handleEditBtnClick(itemData: any) {
     emit('editClick', itemData)
   }
-  function handleNewUserClick() {
+  function handleNewPageClick() {
     emit('newClick')
   }
 
-  defineExpose({ fetchUsersListData })
+  defineExpose({ fetchPageListData })
 
 </script>
 

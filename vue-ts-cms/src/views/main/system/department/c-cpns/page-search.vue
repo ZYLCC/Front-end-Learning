@@ -3,27 +3,13 @@
     <el-form label-width="80px" size="large" :model="searchForm">
       <el-row :gutter="80">
         <el-col :span="8">
-          <el-form-item label="用户名" prop="name">
-            <el-input placeholder="请输入查询的用户名" v-model="searchForm.name"></el-input>
+          <el-form-item label="部门名称" prop="name">
+            <el-input placeholder="请输入查询的部门名称" v-model="searchForm.name"></el-input>
           </el-form-item>
         </el-col>
         <el-col :span="8">
-          <el-form-item label="真实姓名" prop="realname">
-            <el-input placeholder="请输入查询的真实姓名" v-model="searchForm.realname"></el-input>
-          </el-form-item>
-        </el-col>
-        <el-col :span="8">
-          <el-form-item label="电话号码" prop="cellphone">
-            <el-input placeholder="请输入查询的电话号码" v-model="searchForm.cellphone"></el-input>
-          </el-form-item>
-        </el-col>
-
-        <el-col :span="8">
-          <el-form-item label="状态" prop="enable">
-            <el-select placeholder="请选择查询状态" style="width: 100%" v-model="searchForm.enable">
-              <el-option label="启用" :value="1" />
-              <el-option label="禁用" :value="0" />
-            </el-select>
+          <el-form-item label="部门领导" prop="leader">
+            <el-input placeholder="请输入查询的部门领导" v-model="searchForm.leader"></el-input>
           </el-form-item>
         </el-col>
 
@@ -52,18 +38,15 @@
 <script setup lang="ts">
   import { ElForm } from 'element-plus'
   import { reactive } from 'vue'
-  import type { ISearchForm } from '@/types/user';
 
   // 定义自定义事件
   const emit = defineEmits(['queryClick', 'resetClick'])
 
 
   // 定义 form 的数据
-  const searchForm = reactive<ISearchForm>({
+  const searchForm = reactive<any>({
     name: '',
-    realname: '',
-    cellphone: '',
-    enable: 1,
+    leader: '',
     createAt: ''
   })
 
@@ -71,9 +54,7 @@
   // const fromRef = ref<InstanceType<typeof ElForm>>()
   function handleResetClick() {
     searchForm.name = ''
-    searchForm.cellphone = ''
-    searchForm.realname = ''
-    searchForm.enable = 1
+    searchForm.leader = ''
     searchForm.createAt = ''
 
     // 将事件传递出去， content 内部重新发送网络请求
